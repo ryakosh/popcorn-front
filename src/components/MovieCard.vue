@@ -1,0 +1,50 @@
+<template>
+  <pop-card>
+    <div class="movie-card">
+      <img class="movie-card__poster" :src="movie.poster">
+      <span class="movie-card__title">{{ movie.title }}</span>
+      <!-- TODO: add movie score here -->
+    </div>
+  </pop-card>
+</template>
+
+<script>
+import Card from './Card.vue';
+
+export default {
+  name: 'pop-movie-card',
+  components: {
+    'pop-card': Card,
+  },
+  props: {
+    movie: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+.movie-card {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+
+  &__poster {
+    width: 111.1px;
+    height: 149.1px;
+    border-radius: inherit;
+  }
+  &__title {
+    width: auto;
+    height: 17px;
+    padding: 5px;
+    margin-top: 6.9px;
+    border-radius: 0 20px 20px 0;
+    background-color: #2C3E50;
+    font-size: 10px;
+    color: white;
+  }
+}
+</style>
