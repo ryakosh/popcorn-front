@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "jest"
   },
   "dependencies": {
     "vue": "^2.5.17",
@@ -13,12 +14,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
     "@vue/cli-plugin-babel": "^3.0.5",
     "@vue/cli-plugin-eslint": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
     "@vue/eslint-config-prettier": "^3.0.5",
+    "@vue/test-utils": "^1.0.0-beta.25",
+    "babel-core": "^7.0.0-bridge",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
+    "vue-jest": "^3.0.0",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
@@ -44,5 +51,11 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "jest": {
+    "transform": {
+      ".+\\.vue$": "vue-jest",
+      ".+\\.js$": "babel-jest"
+    }
+  }
 }
