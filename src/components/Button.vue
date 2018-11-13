@@ -2,6 +2,8 @@
   <button 
     :class="['button', {
       'button_circle': circle,
+      'button_shadow': shadow,
+      'button_img': img,
       }]"
     @click="hClick"
   >
@@ -14,6 +16,14 @@ export default {
   name: 'pop-button',
   props: {
     circle: {
+      type: Boolean,
+      default: false,
+    },
+    shadow: {
+      type: Boolean,
+      default: true,
+    },
+    img: {
       type: Boolean,
       default: false,
     },
@@ -33,7 +43,6 @@ export default {
   outline: none;
   border-radius: 100px;
   background-color: white;
-  box-shadow: 0 0 3px rgba(0, 0, 0, .65);
   font-size: 10px;
 
   &_circle {
@@ -41,6 +50,16 @@ export default {
     height: 35.6px;
     padding: 0;
     border-radius: 50%;
+  }
+
+  &_shadow {
+    box-shadow: 0 0 3px rgba(0, 0, 0, .65);
+  }
+
+  &_img img {
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
   }
 }
 </style>
