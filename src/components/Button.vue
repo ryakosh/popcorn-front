@@ -1,16 +1,12 @@
 <template>
-  <button class="button" @click="hClick">{{ text }}</button>
+  <button class="button" @click="hClick">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
 export default {
   name: 'pop-button',
-  props: {
-    text: {
-      type: String,
-      required: true,
-    },
-  },
   methods: {
     hClick() {
       this.$emit('on-click');
