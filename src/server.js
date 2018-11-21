@@ -8,7 +8,12 @@ class Server {
   }
 
   signup(email, uname, pwd) {
-    const data = qs.stringify({ email, uname, pwd })
-    return this.x.post('/signup', data)
+    const data = qs.stringify({ email, uname, pwd });
+    return this.x.post('/signup', data);
+  }
+
+  signin(uname, pwd) {
+    const data = qs.stringify({ uname, pwd });
+    return this.x.post('/signin', data);
   }
 }
