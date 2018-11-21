@@ -20,4 +20,8 @@ class Server {
   movies() {
     return this.x.get('/movies');
   }
+
+  movie(id) {
+    return this.x.get(`/movies/${id}`);
+  }
 }
