@@ -16,4 +16,8 @@ class Server {
     const data = qs.stringify({ uname, pwd });
     return this.x.post('/signin', data);
   }
+
+  movies() {
+    return this.x.get('/movies');
+  }
 }
