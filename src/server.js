@@ -11,4 +11,4 @@ class Server {
     const data = qs.stringify({ email, uname, pwd })
     return this.x.post('/signup', data)
   }
-}server
+}
