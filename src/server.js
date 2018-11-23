@@ -4,7 +4,7 @@ import qs from 'qs';
 class Server {
   constructor() {
     this.x = axios.create({
-      baseURL: 'localhost:5000/',
+      baseURL: 'http://localhost:5000/',
     });
     this.cache = {};
   }
@@ -28,4 +28,4 @@ class Server {
   }
 }
 
-export default Server();
+export default new Server();
