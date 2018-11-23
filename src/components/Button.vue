@@ -5,6 +5,7 @@
       'button_shadow': shadow,
       'button_img': img,
       }]"
+    type="button"
     @click="hClick"
   >
     <slot></slot>
