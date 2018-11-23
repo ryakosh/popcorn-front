@@ -2,8 +2,10 @@ import axios from 'axios';
 import qs from 'qs';
 
 class Server {
-  constructor(xConfig = { /* Default axios config */ }) {
-    this.x = axios.create(xConfig);
+  constructor() {
+    this.x = axios.create({
+      baseURL: 'localhost:5000/',
+    });
     this.cache = {};
   }
 
@@ -25,3 +27,5 @@ class Server {
     return this.x.get(`/movies/${id}`);
   }
 }
+
+export default Server();
