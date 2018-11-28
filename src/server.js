@@ -11,12 +11,12 @@ class Server {
 
   signup(email, uname, pwd) {
     const data = qs.stringify({ email, uname, pwd });
-    return this.x.post('/signup', data);
+    return this.x.post('/auth/signup', data);
   }
 
   signin(uname, pwd) {
     const data = qs.stringify({ uname, pwd });
-    return this.x.post('/signin', data);
+    return this.x.post('/auth/signin', data);
   }
 
   movies() {
