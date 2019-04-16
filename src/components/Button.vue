@@ -5,6 +5,7 @@
       'button_shadow': shadow,
       'button_img': img,
       }]"
+    type="button"
     @click="hClick"
   >
     <slot></slot>
@@ -57,9 +58,9 @@ export default {
   }
 
   &_img img {
-    width: inherit;
-    height: inherit;
-    border-radius: inherit;
+    width: 35.6px;
+    height: 35.6px;
+    border-radius: 50%;
   }
 }
 </style>

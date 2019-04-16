@@ -1,12 +1,27 @@
 <template>
   <div id="app">
-    <div class="c"></div>
+    <div class="c">
+      <pop-nav/>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
+
+<script>
+import Nav from './components/Nav.vue';
+
+export default {
+  components: {
+    'pop-nav': Nav,
+  },
+};
+</script>
+
 
 <style>
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 html, body, #app {
