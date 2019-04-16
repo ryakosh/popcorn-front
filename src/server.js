@@ -1,11 +1,17 @@
+import axios from 'axios';
+
 export const BASE_URL = 'http://localhost:8000/popcorn';
 
-export function getMovies(baseUrl, search, limit='', page='', filters='') {
-    return axios.get(`${baseUrl}/movies`, {
+export function movies(baseURL, search, limit='', page='', filters='') {
+    return axios.get(`${baseURL}/movies`, {
         params: { search, limit, page, filters },
     });
 }
 
-export function getMovie(baseUrl, id) {
-    return axios.get(`${baseUrl}/movies/${id}`);
+export function movie(baseURL, id) {
+    return axios.get(`${baseURL}/movies/${id}`);
+}
+
+export function signup(baseURL, uname, pwd, email) {
+    return axios.post(`${baseURL}/auth/signup`, { uname, pwd, email});
 }
