@@ -55,3 +55,5 @@ export class Server {
         return args.join('');
     }
 }
+
+export const server = new Server();

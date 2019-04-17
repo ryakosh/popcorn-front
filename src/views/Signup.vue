@@ -18,7 +18,7 @@
 <script>
 import TextInput from '../components/TextInput.vue';
 import Button from '../components/Button.vue';
-import {Server, BASE_URL} from '../server.js';
+import {server, BASE_URL} from '../server.js';
 
 export default {
   name: 'pop-signup-view',
@@ -38,7 +38,6 @@ export default {
   methods: {
     hClick() {
       const input = this.input;
-      const server = new Server();
       server.signup(BASE_URL, input.uname, input.pwd, input.email);
     },
   },
