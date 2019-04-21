@@ -2,8 +2,15 @@
     <div class="movie-details-view">
         <div class="movie-details-view__info">
             <div class="movie-details-view__data">
+                <pop-plaque left="TITLE" :right="movie.title" /><br />
+                <pop-plaque left="STARS" :right="movie.stars.join(', ')" /><br />
+                <pop-plaque left="WRITERS" :right="movie.writers.join(', ')" /><br />
+                <pop-plaque left="DIRECTOR" :right="movie.directors.join(', ')" /><br />
+                <pop-plaque left="GENRES" :right="movie.genres.join(', ')" />
             </div>
             <div class="movie-details-view__poster">
+                <!-- TODO: Remove this, dev only -->
+                <div style="width: 148.3px; height: 199px;"></div>
             </div>
         </div>
         <div class="movie-details-view__description">
@@ -48,5 +55,32 @@ export default {
     padding: 10px;
     display: flex;
     flex-direction: column;
+
+    &__info {
+        width: 100%;
+        height: auto;
+        display: flex;
+    }
+
+    &__data {
+        width: 100%;
+        height: auto;
+        display: inline-block;
+
+        .plaque {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__poster {
+        width: auto;
+        height: auto;
+    }
+
+    &__description {
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+    }
 }
 </style>
