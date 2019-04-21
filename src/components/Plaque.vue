@@ -25,6 +25,7 @@ export default {
 .plaque {
   width: auto;
   height: 24px;
+  max-width: 60%;
   padding: 3px 6px;
   border-radius: 20px;
   background-color: white;
@@ -44,6 +45,8 @@ export default {
 
   &__right {
     margin-left: 7px;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }
 </style>
