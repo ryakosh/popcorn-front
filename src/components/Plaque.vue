@@ -25,7 +25,7 @@ export default {
 .plaque {
   width: auto;
   height: 24px;
-  max-width: 60%;
+  max-width: 100%;
   padding: 3px 6px;
   border-radius: 20px;
   background-color: white;

@@ -9,8 +9,9 @@
                 <pop-plaque left="GENRES" :right="movie.genres.join(', ')" />
             </div>
             <div class="movie-details-view__poster">
-                <!-- TODO: Remove this, dev only -->
-                <div style="width: 148.3px; height: 199px;"></div>
+                <img style="width: 148.3px; height: 199px;"
+                    :src="`http://localhost/assets/${movie.poster}`"
+                />
             </div>
         </div>
         <div class="movie-details-view__description">
@@ -59,11 +60,11 @@ export default {
     &__info {
         width: 100%;
         height: auto;
-        display: flex;
+        display: inline-flex;
     }
 
     &__data {
-        width: 100%;
+        width: 55%;
         height: auto;
         display: inline-block;
 
@@ -75,6 +76,7 @@ export default {
     &__poster {
         width: auto;
         height: auto;
+        margin-right: -10px;
     }
 
     &__description {
