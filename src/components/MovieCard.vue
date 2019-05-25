@@ -1,7 +1,9 @@
 <template>
   <pop-card>
-    <div class="movie-card">
-      <img class="movie-card__poster" :src="`http://localhost:80/popcorn/assets/${movie.poster}`">
+    <div class="movie-card" @click="hClick">
+      <img class="movie-card__poster"
+        :src="`http://localhost:80/popcorn/assets/${movie.poster}`"
+      >
       <span class="movie-card__title">{{ movie.title }}</span>
     </div>
   </pop-card>
@@ -19,6 +21,16 @@ export default {
     movie: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    hClick() {
+      this.$router.push({
+        name: 'movie',
+        params: {
+          id: this.movie.movie_id,
+        },
+      });
     },
   },
 };
