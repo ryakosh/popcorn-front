@@ -41,5 +41,6 @@ html, body, #app {
   border-radius: 20px;
   background-color: white;
   box-shadow: 0 0 9px black;
+  overflow-y: auto;
 }
 </style>
