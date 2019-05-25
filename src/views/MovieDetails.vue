@@ -10,7 +10,7 @@
             </div>
             <div class="movie-details-view__poster">
                 <img style="width: 148.3px; height: 199px;"
-                    :src="`http://localhost/assets/${movie.poster}`"
+                    :src="`http://localhost/popcorn/assets/${movie.poster}`"
                 />
             </div>
         </div>
