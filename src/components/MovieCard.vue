@@ -1,7 +1,7 @@
 <template>
   <pop-card>
     <div class="movie-card">
-      <img class="movie-card__poster" :src="movie.poster">
+      <img class="movie-card__poster" :src="`http://localhost:80/popcorn/assets/${movie.poster}`">
       <span class="movie-card__title">{{ movie.title }}</span>
     </div>
   </pop-card>
@@ -37,13 +37,17 @@ export default {
   }
   &__title {
     width: auto;
-    height: 17px;
+    max-width: 95%;
+    height: 22px;
+    display: inline-block;
     padding: 5px;
     margin-top: 6.9px;
     border-radius: 0 20px 20px 0;
     background-color: #2C3E50;
     font-size: 10px;
     color: white;
+    white-space: nowrap;
+    overflow-x: auto;
   }
 }
 </style>
