@@ -16,6 +16,6 @@ export default new Router({
     { path: '/', component: Home },
     { path: '/signup', component: Signup },
     { path: '/signin', component: Signin },
-    { path: '/movies/:id', component: MovieDetails },
+    { path: '/movies/:id', name: 'movie', component: MovieDetails },
   ],
 });
