@@ -1,7 +1,7 @@
 <template>
   <div class="movie-list">
     <h2 class="movie-list__name">{{ name }}</h2>
-    <div class="movie-list__container">
+    <div class="movie-list__container" v-if="movies.length">
       <pop-movie-card v-for="(movie, i) of subMovies" :movie="movie" :key="i" />
     </div>
   </div>
