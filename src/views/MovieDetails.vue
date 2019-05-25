@@ -77,6 +77,11 @@ export default {
         width: auto;
         height: auto;
         margin-right: -10px;
+
+        img {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
     }
 
     &__description {
