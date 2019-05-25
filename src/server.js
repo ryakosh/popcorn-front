@@ -11,7 +11,7 @@ export class Server {
         };
     }
 
-    movies(baseURL, search, limit='', page='', filters='') {
+    movies(baseURL, search=null, limit=null, page=null, filters=null) {
         const k = Server.genCacheKey(search, limit, page, filters);
 
         if (this.hasCache('movies', k)) {
