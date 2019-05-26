@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="c">
-      <pop-nav/>
+      <pop-nav :showBack="showBack" @on-click="hClick"/>
       <router-view></router-view>
     </div>
   </div>
@@ -11,8 +11,34 @@
 import Nav from './components/Nav.vue';
 
 export default {
+  data() {
+    return {
+      showBack: false,
+    };
+  },
   components: {
     'pop-nav': Nav,
+  },
+  methods: {
+    hClick() {
+      this.$router.go(-1);
+    },
+    setShowBack(path) {
+      if (path === '/') {
+        this.showBack = false;
+      } else {
+        this.showBack = true;
+      };
+    },
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to.path);
+      this.setShowBack(to.path);
+    },
+  },
+  created() {
+    this.setShowBack(window.location.pathname);
   },
 };
 </script>
