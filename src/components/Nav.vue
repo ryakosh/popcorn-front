@@ -2,7 +2,10 @@
   <div class="nav">
     <div class="nav__left">
       <transition name="fade-scroll_back">
-        <pop-button class="nav__back" v-show="showBack" circle img :shadow="false">
+        <pop-button class="nav__back" v-show="showBack"
+          @on-click="hClick"
+          circle img :shadow="false"
+        >
           <img src="../assets/nav/back-black.svg">
         </pop-button>
       </transition>
@@ -30,6 +33,11 @@ export default {
     showBack: {
       type: Boolean,
       required: true,
+    },
+  },
+  methods: {
+    hClick() {
+      this.$emit('on-click');
     },
   },
 };
