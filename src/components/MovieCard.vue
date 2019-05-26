@@ -25,12 +25,7 @@ export default {
   },
   methods: {
     hClick() {
-      this.$router.push({
-        name: 'movie',
-        params: {
-          id: this.movie.movie_id,
-        },
-      });
+      this.$emit('on-click', this.movie.movie_id);
     },
   },
 };

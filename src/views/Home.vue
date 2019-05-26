@@ -1,9 +1,9 @@
 <template>
     <div>
-        <pop-movie-list name="Action" :movies="actionMovies"/>
-        <pop-movie-list name="Adventure" :movies="adventureMovies"/>
-        <pop-movie-list name="Drama" :movies="dramaMovies"/>
-        <pop-movie-list name="Fantasy" :movies="fantasyMovies"/>
+        <pop-movie-list name="Action" :movies="actionMovies" @on-click="hClick"/>
+        <pop-movie-list name="Adventure" :movies="adventureMovies" @on-click="hClick"/>
+        <pop-movie-list name="Drama" :movies="dramaMovies" @on-click="hClick"/>
+        <pop-movie-list name="Fantasy" :movies="fantasyMovies" @on-click="hClick"/>
     </div>
 </template>
 
@@ -27,6 +27,16 @@ export default {
     },
     components: {
         'pop-movie-list': MovieList,
+    },
+    methods: {
+        hClick(movie_id) {
+            this.$router.push({
+                name: 'movie',
+                params: {
+                    id: movie_id,
+                },
+            });
+        },
     },
     created() {
         for (let filterGenre of filterGenres) {

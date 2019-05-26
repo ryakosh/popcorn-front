@@ -2,7 +2,10 @@
   <div class="movie-list">
     <h2 class="movie-list__name">{{ name }}</h2>
     <div class="movie-list__container" v-if="movies.length">
-      <pop-movie-card v-for="(movie, i) of subMovies" :movie="movie" :key="i" />
+      <pop-movie-card 
+        v-for="(movie, i) of subMovies" :movie="movie" :key="i"
+        @on-click="hClick"
+      />
     </div>
   </div>
 </template>
@@ -29,6 +32,11 @@ export default {
   },
   components: {
     'pop-movie-card': MovieCard,
+  },
+  methods: {
+    hClick(movie_id) {
+      this.$emit('on-click', movie_id);
+    },
   },
   computed: {
     subMovies() {
