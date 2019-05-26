@@ -33,7 +33,6 @@ export default {
   },
   watch: {
     $route(to, from) {
-      console.log(to.path);
       this.setShowBack(to.path);
     },
   },
