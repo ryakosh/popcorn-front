@@ -1,10 +1,13 @@
 <template>
-  <button 
-    :class="['button', {
-      'button_circle': circle,
-      'button_shadow': shadow,
-      'button_img': img,
-      }]"
+  <button
+    :class="[
+      'button',
+      {
+        button_circle: circle,
+        button_shadow: shadow,
+        button_img: img
+      }
+    ]"
     type="button"
     @click="hClick"
   >
@@ -14,26 +17,26 @@
 
 <script>
 export default {
-  name: 'pop-button',
+  name: "pop-button",
   props: {
     circle: {
       type: Boolean,
-      default: false,
+      default: false
     },
     shadow: {
       type: Boolean,
-      default: true,
+      default: true
     },
     img: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   methods: {
     hClick() {
-      this.$emit('on-click');
-    },
-  },
+      this.$emit("on-click");
+    }
+  }
 };
 </script>
 
@@ -54,7 +57,7 @@ export default {
   }
 
   &_shadow {
-    box-shadow: 0 0 3px rgba(0, 0, 0, .65);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.65);
   }
 
   &_img img {

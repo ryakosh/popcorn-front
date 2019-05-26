@@ -1,33 +1,34 @@
 <template>
   <pop-card>
     <div class="movie-card" @click="hClick">
-      <img class="movie-card__poster"
+      <img
+        class="movie-card__poster"
         :src="`http://localhost:80/popcorn/assets/${movie.poster}`"
-      >
+      />
       <span class="movie-card__title">{{ movie.title }}</span>
     </div>
   </pop-card>
 </template>
 
 <script>
-import Card from './Card.vue';
+import Card from "./Card.vue";
 
 export default {
-  name: 'pop-movie-card',
+  name: "pop-movie-card",
   components: {
-    'pop-card': Card,
+    "pop-card": Card
   },
   props: {
     movie: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   methods: {
     hClick() {
-      this.$emit('on-click', this.movie.movie_id);
-    },
-  },
+      this.$emit("on-click", this.movie.movie_id);
+    }
+  }
 };
 </script>
 
@@ -50,7 +51,7 @@ export default {
     padding: 5px;
     margin-top: 6.9px;
     border-radius: 0 20px 20px 0;
-    background-color: #2C3E50;
+    background-color: #2c3e50;
     font-size: 10px;
     color: white;
     white-space: nowrap;
