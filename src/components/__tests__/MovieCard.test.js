@@ -9,7 +9,7 @@ describe('MovieCard component', () => {
       propsData: {
         movie: {
           title: 'test',
-          poster: 'https://test.t/test.jpg',
+          poster: 'test.jpg',
           score: 3,
         },
       },
@@ -19,7 +19,7 @@ describe('MovieCard component', () => {
   it('has the correct poster', () => {
     expect(w.find('.movie-card__poster')
       .attributes('src'))
-        .toBe('https://test.t/test.jpg');
+        .toBe('http://localhost:80/popcorn/assets/test.jpg');
   });
 
   it('has the correct title', () => {
