@@ -3,7 +3,7 @@
     <div class="movie-card" @click="hClick">
       <img
         class="movie-card__poster"
-        :src="`http://localhost:80/assets/${movie.poster}`"
+        :src="`http://192.168.1.6/assets/${movie.poster}`"
       />
       <span class="movie-card__title">{{ movie.title }}</span>
     </div>
