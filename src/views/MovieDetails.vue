@@ -62,6 +62,7 @@ export default {
     width: 100%;
     height: auto;
     display: inline-flex;
+    justify-content: space-between;
   }
 
   &__data {
@@ -77,7 +78,6 @@ export default {
   &__poster {
     width: auto;
     height: auto;
-    margin-right: -10px;
 
     img {
       border-top-left-radius: 12px;
