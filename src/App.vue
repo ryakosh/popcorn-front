@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <div class="c">
-      <pop-nav :showBack="showBack" @on-click="hClick" />
+      <pop-nav
+        :showBack="showBack"
+        @on-click-back="hClickBack"
+        @on-click-logo="hClickLogo"
+      />
       <router-view></router-view>
     </div>
   </div>
@@ -20,8 +24,11 @@ export default {
     "pop-nav": Nav
   },
   methods: {
-    hClick() {
+    hClickBack() {
       this.$router.go(-1);
+    },
+    hClickLogo() {
+      this.$router.push("/");
     },
     setShowBack(path) {
       if (path === "/") {

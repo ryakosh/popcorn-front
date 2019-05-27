@@ -5,7 +5,7 @@
         <pop-button
           class="nav__back"
           v-show="showBack"
-          @on-click="hClick"
+          @on-click="hClickBack"
           circle
           img
           :shadow="false"
@@ -15,7 +15,7 @@
       </transition>
     </div>
     <div class="nav__center">
-      <img src="../assets/popcorn.svg" />
+      <img @click="hClickLogo" src="../assets/popcorn.svg" />
     </div>
     <div class="nav__right">
       <pop-button circle img :shadow="false">
@@ -40,8 +40,11 @@ export default {
     }
   },
   methods: {
-    hClick() {
-      this.$emit("on-click");
+    hClickBack() {
+      this.$emit("on-click-back");
+    },
+    hClickLogo() {
+      this.$emit("on-click-logo");
     }
   }
 };
