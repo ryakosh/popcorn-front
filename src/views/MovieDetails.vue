@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-details-view">
+  <div class="movie-details-view" v-if="movie">
     <div class="movie-details-view__info">
       <div class="movie-details-view__data">
         <pop-plaque left="TITLE" :right="movie.title" /><br />
