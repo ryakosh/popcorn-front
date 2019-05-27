@@ -44,11 +44,11 @@ export class Server {
   }
 
   getCache(req, k) {
-    this.cache[req][k];
+    return this.cache[req][k];
   }
 
   hasCache(req, k) {
-    this.cache[req].hasOwnProperty(k);
+    return this.cache[req].hasOwnProperty(k);
   }
 
   static genCacheKey(...args) {
