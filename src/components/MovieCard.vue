@@ -3,7 +3,7 @@
     <div class="movie-card" @click="hClick">
       <img
         class="movie-card__poster"
-        :src="`http://localhost:80/popcorn/assets/${movie.poster}`"
+        :src="`http://localhost:80/assets/${movie.poster}`"
       />
       <span class="movie-card__title">{{ movie.title }}</span>
     </div>
