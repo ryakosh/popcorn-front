@@ -78,6 +78,7 @@ export default {
   &__poster {
     width: auto;
     height: auto;
+    margin-right: -10px;
 
     img {
       border-top-left-radius: 12px;
