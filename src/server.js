@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const BASE_URL = "http://192.168.1.6:8000/popcorn";
+export const BASE_URL_API = "http://192.168.1.6:8000/popcorn/";
+export const BASE_URL_ASSETS = "http://192.168.1.6:80/assets/";
 
 export class Server {
   constructor() {
@@ -18,7 +19,7 @@ export class Server {
       return this.getCache("movies", k);
     }
 
-    const res = axios.get(`${baseURL}/movies`, {
+    const res = axios.get(`${baseURL}movies`, {
       params: { search, limit, page, filters }
     });
     this.addCache("movies", k, res);
@@ -30,13 +31,13 @@ export class Server {
       return this.getCache("movie", id);
     }
 
-    const res = axios.get(`${baseURL}/movies/${id}`);
+    const res = axios.get(`${baseURL}movies/${id}`);
     this.addCache("movie", id, res);
     return res;
   }
 
   signup(baseURL, uname, pwd, email) {
-    return axios.post(`${baseURL}/auth/signup`, { uname, pwd, email });
+    return axios.post(`${baseURL}auth/signup`, { uname, pwd, email });
   }
 
   addCache(req, k, v) {

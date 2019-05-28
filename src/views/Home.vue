@@ -1,26 +1,44 @@
 <template>
   <div>
-    <pop-movie-list name="Action" :movies="actionMovies" @on-click="hClick" />
+    <pop-movie-list
+      name="Action"
+      :movies="actionMovies"
+      :baseURL="BASE_URL_ASSETS"
+      @on-click="hClick"
+    />
     <pop-movie-list
       name="Adventure"
       :movies="adventureMovies"
+      :baseURL="BASE_URL_ASSETS"
       @on-click="hClick"
     />
-    <pop-movie-list name="Drama" :movies="dramaMovies" @on-click="hClick" />
-    <pop-movie-list name="Fantasy" :movies="fantasyMovies" @on-click="hClick" />
+    <pop-movie-list
+      name="Drama"
+      :movies="dramaMovies"
+      :baseURL="BASE_URL_ASSETS"
+      @on-click="hClick"
+    />
+    <pop-movie-list
+      name="Fantasy"
+      :movies="fantasyMovies"
+      :baseURL="BASE_URL_ASSETS"
+      @on-click="hClick"
+    />
   </div>
 </template>
 
 <script>
 import MovieList from "../components/MovieList.vue";
-import { server, BASE_URL } from "../server.js";
+import { server, BASE_URL_API, BASE_URL_ASSETS } from "../server.js";
 
 const filterGenres = ["Action", "Adventure", "Drama", "Fantasy"];
 
 export default {
   name: "pop-home-view",
   data() {
-    let data = {};
+    let data = {
+      BASE_URL_ASSETS
+    };
 
     for (let filterGenre of filterGenres) {
       data[`${filterGenre.toLowerCase()}Movies`] = [];
@@ -44,7 +62,7 @@ export default {
   created() {
     for (let filterGenre of filterGenres) {
       server
-        .movies(BASE_URL, null, null, null, `genres:${filterGenre}`)
+        .movies(BASE_URL_API, null, null, null, `genres:${filterGenre}`)
         .then(res => {
           this[`${filterGenre.toLowerCase()}Movies`] = res.data.payload;
         })

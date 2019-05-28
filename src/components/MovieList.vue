@@ -5,6 +5,7 @@
       <pop-movie-card
         v-for="(movie, i) of subMovies"
         :movie="movie"
+        :baseURL="baseURL"
         :key="i"
         @on-click="hClick"
       />
@@ -30,6 +31,10 @@ export default {
       type: Number,
       required: false,
       default: 10
+    },
+    baseURL: {
+      type: String,
+      required: true
     }
   },
   components: {

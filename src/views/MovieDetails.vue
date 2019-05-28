@@ -11,7 +11,7 @@
       <div class="movie-details-view__poster">
         <img
           style="width: 148.3px; height: 199px;"
-          :src="`http://192.168.1.6/assets/${movie.poster}`"
+          :src="BASE_URL_ASSETS + movie.poster"
         />
       </div>
     </div>
@@ -23,19 +23,22 @@
 
 <script>
 import Plaque from "../components/Plaque.vue";
-import { server, BASE_URL } from "../server.js";
+import { server, BASE_URL_API, BASE_URL_ASSETS } from "../server.js";
 
 export default {
   name: "pop-movie-details-view",
   data() {
-    return { movie: null };
+    return {
+      movie: null,
+      BASE_URL_ASSETS
+    };
   },
   components: {
     "pop-plaque": Plaque
   },
   methods: {
     updateMovie(id) {
-      server.movie(BASE_URL, id).then(res => {
+      server.movie(BASE_URL_API, id).then(res => {
         this.movie = res.data.payload;
       });
     }
