@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const BASE_URL_API = "http://192.168.1.6:8000/popcorn/";
-export const BASE_URL_ASSETS = "http://192.168.1.6:80/assets/";
+export const BASE_URL_API = "http://171.22.27.103:8000/popcorn/";
+export const BASE_URL_ASSETS = "http://171.22.27.103:80/assets/";
 
 export class Server {
   constructor() {

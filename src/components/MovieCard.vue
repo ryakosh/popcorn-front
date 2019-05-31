@@ -1,7 +1,7 @@
 <template>
   <pop-card>
     <div class="movie-card" @click="hClick">
-      <img class="movie-card__poster" :src="baseURL + movie.poster" />
+      <img class="movie-card__poster" :src="`${baseURL}P${movie.poster}`" />
       <span class="movie-card__title">{{ movie.title }}</span>
     </div>
   </pop-card>

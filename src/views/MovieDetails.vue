@@ -9,10 +9,7 @@
         <pop-plaque left="GENRES" :right="movie.genres.join(', ')" />
       </div>
       <div class="movie-details-view__poster">
-        <img
-          style="width: 148.3px; height: 199px;"
-          :src="BASE_URL_ASSETS + movie.poster"
-        />
+        <img :src="`${BASE_URL_ASSETS}P${movie.poster}`" />
       </div>
     </div>
     <div class="movie-details-view__description">
@@ -84,6 +81,8 @@ export default {
     margin-right: -10px;
 
     img {
+      width: 148.3px;
+      height: 199px;
       border-top-left-radius: 12px;
       border-bottom-left-radius: 12px;
     }
