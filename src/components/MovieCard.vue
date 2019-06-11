@@ -1,29 +1,35 @@
 <template>
   <pop-card>
-    <div class="movie-card">
-      <img class="movie-card__poster" :src="movie.poster">
+    <div class="movie-card" @click="hClick">
+      <img class="movie-card__poster" :src="baseURL + movie.poster" />
       <span class="movie-card__title">{{ movie.title }}</span>
-      <pop-movie-score :score="movie.score" />
     </div>
   </pop-card>
 </template>
 
 <script>
-import Card from './Card.vue';
-import MovieScore from './MovieScore.vue';
+import Card from "./Card.vue";
 
 export default {
-  name: 'pop-movie-card',
+  name: "pop-movie-card",
   components: {
-    'pop-card': Card,
-    'pop-movie-score': MovieScore,
+    "pop-card": Card
   },
   props: {
     movie: {
       type: Object,
-      required: true,
+      required: true
     },
+    baseURL: {
+      type: String,
+      required: true
+    }
   },
+  methods: {
+    hClick() {
+      this.$emit("on-click", this.movie.movie_id);
+    }
+  }
 };
 </script>
 
@@ -40,17 +46,17 @@ export default {
   }
   &__title {
     width: auto;
-    height: 17px;
+    max-width: 95%;
+    height: 22px;
+    display: inline-block;
     padding: 5px;
     margin-top: 6.9px;
     border-radius: 0 20px 20px 0;
-    background-color: #2C3E50;
+    background-color: #2c3e50;
     font-size: 10px;
     color: white;
-  }
-  &__score {
-    margin-top: 6.9px;
-    margin-left: 4px;
+    white-space: nowrap;
+    overflow-x: auto;
   }
 }
 </style>

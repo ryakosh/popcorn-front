@@ -4,13 +4,13 @@
 
 <script>
 export default {
-  name: 'pop-text-input',
-  props: ['value'],
+  name: "pop-text-input",
+  props: ["value"],
   methods: {
     hInput(e) {
-      this.$emit('input', e.target.value);
-    },
-  },
+      this.$emit("input", e.target.value);
+    }
+  }
 };
 </script>
 
@@ -24,6 +24,6 @@ export default {
   border-radius: 20px;
   outline: none;
   background-color: white;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .65);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.65);
 }
 </style>

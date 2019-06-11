@@ -3,42 +3,41 @@
     <h2>Sign In</h2>
 
     <form class="signin-view__form">
-      <pop-text-input placeholder="USERNAME" v-model="input.uname"/>
-      <pop-text-input placeholder="PASSWORD" v-model="input.pwd"/>
+      <pop-text-input placeholder="USERNAME" v-model="input.uname" />
+      <pop-text-input placeholder="PASSWORD" v-model="input.pwd" />
 
-      <pop-button 
-        class="signin-view__signin" 
-        @on-click="hClick"
-      >SIGNIN</pop-button>
+      <pop-button class="signin-view__signin" @on-click="hClick"
+        >SIGNIN</pop-button
+      >
     </form>
   </div>
 </template>
 
 <script>
-import TextInput from '../components/TextInput.vue';
-import Button from '../components/Button.vue';
-import server from '../server.js';
+import TextInput from "../components/TextInput.vue";
+import Button from "../components/Button.vue";
+import server from "../server.js";
 
 export default {
-  name: 'pop-signin-view',
+  name: "pop-signin-view",
   data() {
-    return { 
+    return {
       input: {
-        uname: '',
-        pwd: '',
-      },
+        uname: "",
+        pwd: ""
+      }
     };
   },
   components: {
-    'pop-text-input': TextInput,
-    'pop-button': Button,
+    "pop-text-input": TextInput,
+    "pop-button": Button
   },
   methods: {
     hClick() {
       const input = this.input;
       server.signin(input.uname, input.pwd);
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -63,7 +62,7 @@ export default {
 
   &__signin {
     color: white;
-    background-color: #4C4A48;
+    background-color: #4c4a48;
   }
 }
 </style>

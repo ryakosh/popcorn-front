@@ -2,36 +2,51 @@
   <div class="nav">
     <div class="nav__left">
       <transition name="fade-scroll_back">
-        <pop-button class="nav__back" v-show="showBack" circle img :shadow="false">
-          <img src="../assets/nav/back-black.svg">
+        <pop-button
+          class="nav__back"
+          v-show="showBack"
+          @on-click="hClickBack"
+          circle
+          img
+          :shadow="false"
+        >
+          <img src="../assets/nav/back-black.svg" />
         </pop-button>
       </transition>
     </div>
     <div class="nav__center">
-      <img src="../assets/popcorn.svg" />
+      <img @click="hClickLogo" src="../assets/popcorn.svg" />
     </div>
     <div class="nav__right">
       <pop-button circle img :shadow="false">
-        <img src="../assets/nav/person-black.svg">
+        <img src="../assets/nav/person-black.svg" />
       </pop-button>
     </div>
   </div>
 </template>
 
 <script>
-import Button from './Button.vue';
+import Button from "./Button.vue";
 
 export default {
-  name: 'pop-nav',
+  name: "pop-nav",
   components: {
-    'pop-button': Button,
+    "pop-button": Button
   },
   props: {
     showBack: {
       type: Boolean,
-      required: true,
-    },
+      required: true
+    }
   },
+  methods: {
+    hClickBack() {
+      this.$emit("on-click-back");
+    },
+    hClickLogo() {
+      this.$emit("on-click-logo");
+    }
+  }
 };
 </script>
 
@@ -39,7 +54,7 @@ export default {
 .fade-scroll_back-enter-active,
 .fade-scroll_back-leave-active {
   transition-property: transform, opacity;
-  transition-duration: .4s;
+  transition-duration: 0.4s;
   position: absolute;
 }
 .fade-scroll_back-enter,
