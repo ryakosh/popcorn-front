@@ -8,7 +8,6 @@
           @on-click="hClickBack"
           circle
           img
-          :shadow="false"
         >
           <img src="../assets/nav/back-black.svg" />
         </pop-button>
@@ -18,8 +17,8 @@
       <img @click="hClickLogo" src="../assets/popcorn.svg" />
     </div>
     <div class="nav__right">
-      <pop-button circle img :shadow="false">
-        <img src="../assets/nav/person-black.svg" />
+      <pop-button class="nav__search" circle img>
+        <img src="../assets/nav/search-black.svg" />
       </pop-button>
     </div>
   </div>
@@ -79,6 +78,13 @@ export default {
   &__left {
     width: 35.6px;
     height: 35.6px;
+  }
+
+  &__search {
+    img {
+      width: 20.97px;
+      height: 21.94px;
+    }
   }
 }
 </style>

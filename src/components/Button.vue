@@ -54,16 +54,18 @@ export default {
     height: 35.6px;
     padding: 0;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &_shadow {
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
   }
 
   &_img img {
-    width: 35.6px;
-    height: 35.6px;
-    border-radius: 50%;
+    width: 27px;
+    height: 27px;
   }
 }
 </style>
