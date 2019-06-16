@@ -1,5 +1,5 @@
 <template>
-  <div class="search-item">
+  <div class="search-item" @click="hClick">
     <img class="search-item__poster" :src="poster" />
     <span class="search-item__title">
       {{ `${title} ● ${release_date}` }}
@@ -11,6 +11,10 @@
 export default {
   name: "pop-search-item",
   props: {
+    movie_id: {
+      type: Number,
+      required: true
+    },
     poster: {
       type: String,
       required: true
@@ -22,6 +26,11 @@ export default {
     release_date: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    hClick() {
+      this.$emit("on-click", this.movie_id);
     }
   }
 };

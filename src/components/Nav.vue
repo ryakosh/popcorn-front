@@ -17,7 +17,7 @@
       <img @click="hClickLogo" src="../assets/popcorn.svg" />
     </div>
     <div class="nav__right">
-      <pop-button class="nav__search" circle img>
+      <pop-button class="nav__search" circle img @on-click="hClickSearch">
         <img src="../assets/nav/search-black.svg" />
       </pop-button>
     </div>
@@ -44,6 +44,9 @@ export default {
     },
     hClickLogo() {
       this.$emit("on-click-logo");
+    },
+    hClickSearch() {
+      this.$emit("on-click-search");
     }
   }
 };
