@@ -49,7 +49,7 @@ export default {
     max-width: 95%;
     height: 22px;
     display: inline-block;
-    padding: 5px;
+    padding: 5px 8px 5px 5px;
     margin-top: 6.9px;
     border-radius: 0 20px 20px 0;
     background-color: #2c3e50;
@@ -57,6 +57,20 @@ export default {
     color: white;
     white-space: nowrap;
     overflow-x: auto;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .movie-card {
+    &__poster {
+      width: 152.66px;
+      height: 225.55px;
+    }
+    &__title {
+      height: 27.38px;
+      padding: 7px 10px 7px 5px;
+      font-size: 13px;
+    }
   }
 }
 </style>

@@ -21,4 +21,12 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+@media only screen and (min-width: 600px) {
+  .card {
+    width: 152.8px;
+    height: 273.68px;
+    border-radius: 20px;
+  }
+}
 </style>

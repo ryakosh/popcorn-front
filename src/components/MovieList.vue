@@ -59,7 +59,7 @@ export default {
     margin-left: 9.8px;
   }
   &__container {
-    padding-bottom: 2px;
+    padding: 2px 0;
     margin: 13.8px 0 0 18.8px;
     overflow-x: auto;
     display: flex;
@@ -67,6 +67,22 @@ export default {
 
   .card {
     margin-right: 13.9px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .movie-list {
+    &__name {
+      margin-left: 13.8px;
+      font-size: 32px;
+    }
+    &__container {
+      margin-left: 22.8px;
+    }
+
+    .card {
+      margin-right: 17.9px;
+    }
   }
 }
 </style>

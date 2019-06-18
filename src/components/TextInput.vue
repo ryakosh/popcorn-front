@@ -14,7 +14,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .text-input {
   min-width: 200px;
   width: auto;
@@ -25,5 +25,12 @@ export default {
   outline: none;
   background-color: white;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+}
+
+@media only screen and (min-width: 600px) {
+  .text-input {
+    height: 48.45px;
+    border-radius: 22px;
+  }
 }
 </style>

@@ -66,7 +66,7 @@ export default {
   }
 
   &__data {
-    width: 55%;
+    width: 56%;
     height: auto;
     display: inline-block;
 
@@ -92,6 +92,35 @@ export default {
     width: 100%;
     height: auto;
     margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .movie-details-view {
+    padding: 14px;
+
+    &__data {
+      width: 50%;
+
+      .plaque {
+        margin-bottom: 14px;
+      }
+    }
+
+    &__poster {
+      margin-right: -14px;
+
+      img {
+        width: 260px;
+        height: 350px;
+        border-top-left-radius: 18px;
+        border-bottom-left-radius: 18px;
+      }
+    }
+    &__description {
+      font-size: 20px;
+      margin-top: 19px;
+    }
   }
 }
 </style>

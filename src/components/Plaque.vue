@@ -49,4 +49,19 @@ export default {
     white-space: nowrap;
   }
 }
+
+@media only screen and (min-width: 600px) {
+  .plaque {
+    height: 34px;
+    padding: 8px 9px;
+    font-size: 15px;
+
+    &__left {
+      padding: 6px;
+    }
+    &__right {
+      margin-left: 12px;
+    }
+  }
+}
 </style>

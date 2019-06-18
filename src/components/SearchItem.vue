@@ -56,4 +56,19 @@ export default {
     margin-left: 7px;
   }
 }
+
+@media only screen and (min-width: 600px) {
+  .search-item {
+    height: 68px;
+    border-radius: 10px;
+
+    &__poster {
+      width: 46.96px;
+      height: 68px;
+    }
+    &__title {
+      font-size: 16px;
+    }
+  }
+}
 </style>
