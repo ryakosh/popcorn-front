@@ -5,7 +5,9 @@
         :showBack="showBack"
         @on-click-back="hClickBack"
         @on-click-logo="hClickLogo"
+        @on-click-search="hClickSearch"
       />
+      <pop-search v-show="showSearch" @on-click-cancel="hClickCancel" />
       <router-view></router-view>
     </div>
   </div>
@@ -13,15 +15,18 @@
 
 <script>
 import Nav from "./components/Nav.vue";
+import Search from "./components/Search.vue";
 
 export default {
   data() {
     return {
-      showBack: false
+      showBack: false,
+      showSearch: false
     };
   },
   components: {
-    "pop-nav": Nav
+    "pop-nav": Nav,
+    "pop-search": Search
   },
   methods: {
     hClickBack() {
@@ -29,6 +34,12 @@ export default {
     },
     hClickLogo() {
       this.$router.push("/");
+    },
+    hClickSearch() {
+      this.showSearch = true;
+    },
+    hClickCancel() {
+      this.showSearch = false;
     },
     setShowBack(path) {
       if (path === "/") {
