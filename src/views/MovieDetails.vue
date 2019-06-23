@@ -132,4 +132,33 @@ export default {
     }
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .movie-details-view {
+    padding: 17px;
+
+    &__data {
+      width: 50%;
+
+      .plaque {
+        margin-bottom: 17px;
+      }
+    }
+
+    &__poster {
+      margin-right: -17px;
+
+      img {
+        width: 348px;
+        height: 469px;
+        border-top-left-radius: 22px;
+        border-bottom-left-radius: 22px;
+      }
+    }
+    &__description {
+      font-size: 25px;
+      margin-top: 26px;
+    }
+  }
+}
 </style>

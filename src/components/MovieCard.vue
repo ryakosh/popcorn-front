@@ -82,4 +82,18 @@ export default {
     }
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .movie-card {
+    &__poster {
+      width: 211.81px;
+      height: 308.09px;
+    }
+    &__title {
+      height: 31.94px;
+      padding: 7px 10px 7px 5px;
+      font-size: 16px;
+    }
+  }
+}
 </style>

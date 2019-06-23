@@ -62,7 +62,7 @@ export default {
     color: map-get($LIGHT, secondary);
   }
   &__container {
-    padding: 2px 0;
+    padding: 4px 0;
     margin: 13.8px 0 0 18.8px;
     overflow-x: auto;
     display: flex;
@@ -91,6 +91,22 @@ export default {
 
     .card {
       margin-right: 17.9px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .movie-list {
+    &__name {
+      margin-left: 16.8px;
+      font-size: 43px;
+    }
+    &__container {
+      margin-left: 25.8px;
+    }
+
+    .card {
+      margin-right: 20.9px;
     }
   }
 }

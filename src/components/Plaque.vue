@@ -80,4 +80,19 @@ export default {
     }
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .plaque {
+    height: 49px;
+    padding: 9px 10px;
+    font-size: 20px;
+
+    &__left {
+      padding: 7px;
+    }
+    &__right {
+      margin-left: 13px;
+    }
+  }
+}
 </style>

@@ -38,7 +38,18 @@ export default {
 @media only screen and (min-width: 600px) {
   .text-input {
     height: 48.45px;
+    padding: 0 13px;
     border-radius: 22px;
+    font-size: 19px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .text-input {
+    height: 71.19px;
+    padding: 0 16px;
+    border-radius: 40px;
+    font-size: 24px;
   }
 }
 </style>

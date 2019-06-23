@@ -84,4 +84,19 @@ export default {
     }
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .search-item {
+    height: 94px;
+    border-radius: 10px;
+
+    &__poster {
+      width: 64.51px;
+      height: 94px;
+    }
+    &__title {
+      font-size: 21px;
+    }
+  }
+}
 </style>
