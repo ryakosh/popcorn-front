@@ -46,12 +46,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .button {
   padding: 10px 13px;
   border: none;
   outline: none;
   border-radius: 100px;
-  background-color: white;
+  background-color: map-get($LIGHT, primary);
   font-size: 10px;
 
   &_circle {
@@ -65,7 +67,7 @@ export default {
   }
 
   &_shadow {
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 6px map-get($LIGHT, secondary);
   }
 
   &_img img {
@@ -76,6 +78,14 @@ export default {
   &_bg-img {
     background: no-repeat center;
     background-size: 27px 27px;
+  }
+}
+
+.DARK .button {
+  background-color: map-get($DARK, primary);
+
+  &_shadow {
+    box-shadow: 0 0 6px map-get($DARK, secondary);
   }
 }
 </style>

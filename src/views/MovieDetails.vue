@@ -51,6 +51,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .movie-details-view {
   width: 100%;
   height: 100%;
@@ -91,7 +93,14 @@ export default {
   &__description {
     width: 100%;
     height: auto;
+    color: map-get($LIGHT, secondary);
     margin-top: 10px;
+  }
+}
+
+.DARK .movie-details-view {
+  &__description {
+    color: map-get($DARK, secondary);
   }
 }
 

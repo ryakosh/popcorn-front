@@ -54,9 +54,12 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .movie-list {
   &__name {
     margin-left: 9.8px;
+    color: map-get($LIGHT, secondary);
   }
   &__container {
     padding: 2px 0;
@@ -67,6 +70,12 @@ export default {
 
   .card {
     margin-right: 13.9px;
+  }
+}
+
+.DARK .movie-list {
+  &__name {
+    color: map-get($DARK, secondary);
   }
 }
 

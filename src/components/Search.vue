@@ -82,6 +82,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .c-search {
   width: 100%;
   height: 100%;
@@ -96,7 +98,7 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    background-color: white;
+    background-color: map-get($LIGHT, primary);
     overflow-y: auto;
 
     &__top {
@@ -123,6 +125,16 @@ export default {
     }
     &__item {
       margin-bottom: 10px;
+    }
+  }
+}
+
+.DARK .c-search {
+  .search {
+    background-color: map-get($DARK, primary);
+
+    &__cancel {
+      background-image: url("../assets/cancel-DARK.svg");
     }
   }
 }

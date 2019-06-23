@@ -61,6 +61,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./sass/themes";
+
 * {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
@@ -83,9 +85,14 @@ body,
   width: 100%;
   height: 100%;
   border-radius: 25px;
-  background-color: white;
-  box-shadow: 0 0 9px black;
+  background-color: map-get($LIGHT, primary);
+  box-shadow: 0 0 9px map-get($LIGHT, secondary);
   overflow-y: auto;
+}
+
+.DARK .c {
+  background-color: map-get($DARK, primary);
+  box-shadow: map-get($DARK, primary);
 }
 
 @media only screen and (min-width: 600px) {

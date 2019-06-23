@@ -15,6 +15,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .text-input {
   min-width: 200px;
   width: auto;
@@ -23,8 +25,14 @@ export default {
   border: none;
   border-radius: 20px;
   outline: none;
-  background-color: white;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  background-color: map-get($LIGHT, primary);
+  box-shadow: 0 0 6px map-get($LIGHT, secondary);
+}
+
+.DARK .text-input {
+  color: map-get($DARK, secondary);
+  background-color: map-get($DARK, primary);
+  box-shadow: 0 0 6px map-get($DARK, secondary);
 }
 
 @media only screen and (min-width: 600px) {

@@ -34,6 +34,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .movie-card {
   width: 100%;
   height: 100%;
@@ -52,11 +54,18 @@ export default {
     padding: 5px 8px 5px 5px;
     margin-top: 6.9px;
     border-radius: 0 20px 20px 0;
-    background-color: #2c3e50;
+    background-color: map-get($LIGHT, secondary);
     font-size: 10px;
-    color: white;
+    color: map-get($LIGHT, text);
     white-space: nowrap;
     overflow-x: auto;
+  }
+}
+
+.DARK .movie-card {
+  &__title {
+    background-color: map-get($DARK, secondary);
+    color: map-get($DARK, text);
   }
 }
 

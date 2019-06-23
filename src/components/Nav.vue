@@ -95,4 +95,14 @@ export default {
     background-size: 20.97px 21.94px;
   }
 }
+
+.DARK .nav {
+  &__back {
+    background-image: url("../assets/nav/back-DARK.svg");
+  }
+
+  &__search {
+    background-image: url("../assets/nav/search-DARK.svg");
+  }
+}
 </style>
