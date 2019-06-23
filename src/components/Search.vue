@@ -7,8 +7,12 @@
           placeholder="Search..."
           @input="hInput"
         />
-        <pop-button class="search__cancel" circle img @on-click="hClickCancel">
-          <img src="../assets/cancel-black.svg" />
+        <pop-button
+          class="search__cancel"
+          circle
+          bgImg
+          @on-click="hClickCancel"
+        >
         </pop-button>
       </div>
       <div class="search__bottom" v-if="movies">
@@ -106,10 +110,8 @@ export default {
     }
     &__cancel {
       margin-left: 10px;
-    }
-    &__cancel img {
-      width: 18.95px;
-      height: 18.95px;
+      background-image: url("../assets/cancel-LIGHT.svg");
+      background-size: 18.95px 18.95px;
     }
 
     &__bottom {

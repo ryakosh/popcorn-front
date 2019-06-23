@@ -5,7 +5,8 @@
       {
         button_circle: circle,
         button_shadow: shadow,
-        button_img: img
+        button_img: img,
+        'button_bg-img': bgImg
       }
     ]"
     type="button"
@@ -28,6 +29,10 @@ export default {
       default: true
     },
     img: {
+      type: Boolean,
+      default: false
+    },
+    bgImg: {
       type: Boolean,
       default: false
     }
@@ -66,6 +71,11 @@ export default {
   &_img img {
     width: 27px;
     height: 27px;
+  }
+
+  &_bg-img {
+    background: no-repeat center;
+    background-size: 27px 27px;
   }
 }
 </style>

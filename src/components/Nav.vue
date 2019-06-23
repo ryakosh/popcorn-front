@@ -7,9 +7,8 @@
           v-show="showBack"
           @on-click="hClickBack"
           circle
-          img
+          bgImg
         >
-          <img src="../assets/nav/back-black.svg" />
         </pop-button>
       </transition>
     </div>
@@ -17,9 +16,12 @@
       <img @click="hClickLogo" src="../assets/popcorn.svg" />
     </div>
     <div class="nav__right">
-      <pop-button class="nav__search" circle img @on-click="hClickSearch">
-        <img src="../assets/nav/search-black.svg" />
-      </pop-button>
+      <pop-button
+        class="nav__search"
+        circle
+        bgImg
+        @on-click="hClickSearch"
+      ></pop-button>
     </div>
   </div>
 </template>
@@ -83,11 +85,14 @@ export default {
     height: 35.6px;
   }
 
+  &__back {
+    background-image: url("../assets/nav/back-LIGHT.svg");
+    background-size: 24.45px 14.69px;
+  }
+
   &__search {
-    img {
-      width: 20.97px;
-      height: 21.94px;
-    }
+    background-image: url("../assets/nav/search-LIGHT.svg");
+    background-size: 20.97px 21.94px;
   }
 }
 </style>
