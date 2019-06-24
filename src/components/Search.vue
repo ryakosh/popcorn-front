@@ -113,7 +113,6 @@ export default {
     &__cancel {
       margin-left: 10px;
       background-image: url("../assets/cancel-LIGHT.svg");
-      background-size: 18.95px 18.95px;
     }
 
     &__bottom {

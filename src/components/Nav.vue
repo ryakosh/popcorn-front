@@ -87,12 +87,10 @@ export default {
 
   &__back {
     background-image: url("../assets/nav/back-LIGHT.svg");
-    background-size: 24.45px 14.69px;
   }
 
   &__search {
     background-image: url("../assets/nav/search-LIGHT.svg");
-    background-size: 20.97px 21.94px;
   }
 }
 
@@ -103,6 +101,34 @@ export default {
 
   &__search {
     background-image: url("../assets/nav/search-DARK.svg");
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .nav {
+    &__center img {
+      width: 49px;
+      height: 47.34px;
+    }
+
+    &__left {
+      width: 49px;
+      height: 49px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .nav {
+    &__center img {
+      width: 72px;
+      height: 69.38px;
+    }
+
+    &__left {
+      width: 72px;
+      height: 72px;
+    }
   }
 }
 </style>
