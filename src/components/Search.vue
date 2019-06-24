@@ -15,17 +15,32 @@
         >
         </pop-button>
       </div>
-      <div class="search__bottom" v-if="movies">
-        <pop-search-item
-          class="search__item"
-          v-for="movie of movies"
-          :key="movie.id"
-          :movie_id="movie.movie_id"
-          :title="movie.title"
-          :poster="BASE + movie.poster"
-          :release_date="movie.release_date"
-          @on-click="hClickItem"
-        />
+      <div class="search__bottom">
+        <div class="search__message" v-if="isSearching">
+          <span>Searching<span class="search__emoji">🔍</span></span>
+        </div>
+        <div class="search__message" v-else-if="isNotFound">
+          <span>Nothing found<span class="search__emoji">☹️</span></span>
+        </div>
+        <div class="search__results" v-else-if="movies.length >= 1">
+          <pop-search-item
+            class="search__item"
+            v-for="movie of movies"
+            :key="movie.id"
+            :movie_id="movie.movie_id"
+            :title="movie.title"
+            :poster="BASE + movie.poster"
+            :release_date="movie.release_date"
+            @on-click="hClickItem"
+          />
+        </div>
+        <div class="search__message" v-else>
+          <span
+            >Find movies through search bar<span class="search__emoji"
+              >☝️</span
+            ></span
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -44,8 +59,10 @@ export default {
   name: "pop-search",
   data() {
     return {
-      movies: null,
-      BASE: BASE_URL_ASSETS
+      movies: [],
+      BASE: BASE_URL_ASSETS,
+      isSearching: false,
+      isNotFound: false
     };
   },
   methods: {
@@ -53,12 +70,24 @@ export default {
       window.clearTimeout(timeoutID);
       timeoutID = window.setTimeout(() => {
         server.movies(BASE_URL_API, term, null, null, null).then(res => {
+          this.isSearching = false;
           this.movies = res.data.payload;
+          if (this.movies.length === 0) {
+            this.isNotFound = true;
+          } else {
+            this.isNotFound = false;
+          }
         });
-      }, 250);
+      }, 400);
+
+      this.isSearching = true;
     },
     hInput(value) {
-      this.search(value);
+      if (value) {
+        this.search(value);
+      } else {
+        this.isNotFound = false;
+      }
     },
     hClickCancel() {
       this.$emit("on-click-cancel");
@@ -100,6 +129,8 @@ export default {
     border-radius: 20px;
     background-color: map-get($LIGHT, primary);
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 
     &__top {
       width: 100%;
@@ -122,6 +153,17 @@ export default {
       padding: 5px 10px;
       margin-top: 10px;
     }
+    &__message {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+    }
+    &__emoji {
+      font-size: 40px;
+    }
     &__item {
       margin-bottom: 10px;
     }
@@ -134,6 +176,32 @@ export default {
 
     &__cancel {
       background-image: url("../assets/cancel-DARK.svg");
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .c-search {
+    .search {
+      &__message {
+        font-size: 34px;
+      }
+      &__emoji {
+        font-size: 54px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .c-search {
+    .search {
+      &__message {
+        font-size: 46px;
+      }
+      &__emoji {
+        font-size: 66px;
+      }
     }
   }
 }
