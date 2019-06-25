@@ -16,7 +16,7 @@
         </pop-button>
       </div>
       <div class="search__bottom">
-        <div class="search__message" v-show="movies === null">
+        <div class="search__message" v-show="movies === null && !isSearching">
           <span
             >Find movies through search bar<span class="search__emoji"
               >☝️</span
@@ -67,8 +67,7 @@ export default {
     return {
       movies: null,
       BASE: BASE_URL_ASSETS,
-      isSearching: false,
-      isNotFound: false
+      isSearching: false
     };
   },
   methods: {
@@ -84,7 +83,6 @@ export default {
     },
     hKeyup(e) {
       const value = e.target.value;
-      console.log(value);
 
       if (value) {
         this.search(value);
