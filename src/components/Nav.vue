@@ -17,6 +17,11 @@
     </div>
     <div class="nav__right">
       <pop-button
+        class="nav__theme-switcher"
+        circle
+        @on-click="hClickThemeSwitcher"
+      ></pop-button>
+      <pop-button
         class="nav__search"
         circle
         bgImg
@@ -31,6 +36,11 @@ import Button from "./Button.vue";
 
 export default {
   name: "pop-nav",
+  data() {
+    return {
+      isDark: false
+    };
+  },
   components: {
     "pop-button": Button
   },
@@ -49,12 +59,17 @@ export default {
     },
     hClickSearch() {
       this.$emit("on-click-search");
+    },
+    hClickThemeSwitcher() {
+      this.$emit("on-dark", (this.isDark = !this.isDark));
     }
   }
 };
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .fade-scroll_back-enter-active,
 .fade-scroll_back-leave-active {
   transition-property: transform, opacity;
@@ -80,13 +95,27 @@ export default {
   justify-content: space-between;
   align-items: center;
 
+  &__left,
+  &__right {
+    width: 100%;
+    display: flex;
+  }
+
   &__left {
-    width: 35.6px;
     height: 35.6px;
   }
 
   &__back {
     background-image: url("../assets/nav/back-LIGHT.svg");
+  }
+
+  &__right {
+    justify-content: flex-end;
+  }
+
+  &__theme-switcher {
+    background-color: map-get($DARK, primary);
+    margin-right: 10px;
   }
 
   &__search {
@@ -97,6 +126,10 @@ export default {
 .DARK .nav {
   &__back {
     background-image: url("../assets/nav/back-DARK.svg");
+  }
+
+  &__theme-switcher {
+    background-color: map-get($LIGHT, primary);
   }
 
   &__search {
@@ -112,7 +145,7 @@ export default {
     }
 
     &__left {
-      width: 49px;
+      width: 100%;
       height: 49px;
     }
   }
@@ -126,7 +159,7 @@ export default {
     }
 
     &__left {
-      width: 72px;
+      width: 100%;
       height: 72px;
     }
   }

@@ -127,7 +127,7 @@ export default {
   .search {
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 25px;
     background-color: map-get($LIGHT, primary);
     overflow-y: auto;
     display: flex;
@@ -136,14 +136,15 @@ export default {
     &__top {
       width: 100%;
       height: auto;
-      padding: 9.6px 5px;
+      padding: 5px 5px;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     &__input {
-      width: 100%;
+      width: 87%;
     }
     &__cancel {
-      margin-left: 10px;
       background-image: url("../assets/cancel-LIGHT.svg");
     }
 
@@ -184,6 +185,8 @@ export default {
 @media only screen and (min-width: 600px) {
   .c-search {
     .search {
+      border-radius: 30px;
+
       &__message {
         font-size: 34px;
       }
@@ -197,6 +200,8 @@ export default {
 @media only screen and (min-width: 768px) {
   .c-search {
     .search {
+      border-radius: 40px;
+
       &__message {
         font-size: 46px;
       }

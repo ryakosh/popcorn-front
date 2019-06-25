@@ -1,11 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ DARK: isDark }">
     <div class="c">
       <pop-nav
         :showBack="showBack"
         @on-click-back="hClickBack"
         @on-click-logo="hClickLogo"
         @on-click-search="hClickSearch"
+        @on-dark="hDark"
       />
       <pop-search v-show="showSearch" @on-click-cancel="hClickCancel" />
       <router-view></router-view>
@@ -21,7 +22,8 @@ export default {
   data() {
     return {
       showBack: false,
-      showSearch: false
+      showSearch: false,
+      isDark: false
     };
   },
   components: {
@@ -40,6 +42,9 @@ export default {
     },
     hClickCancel() {
       this.showSearch = false;
+    },
+    hDark(isDark) {
+      this.isDark = isDark;
     },
     setShowBack(path) {
       if (path === "/") {
@@ -97,7 +102,13 @@ body,
 
 @media only screen and (min-width: 600px) {
   .c {
-    border-radius: 26px;
+    border-radius: 30px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .c {
+    border-radius: 40px;
   }
 }
 </style>
