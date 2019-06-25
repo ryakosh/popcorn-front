@@ -5,7 +5,7 @@
         <pop-text-input
           class="search__input"
           placeholder="Search..."
-          @input="hInput"
+          @keyup.native="hKeyup"
         />
         <pop-button
           class="search__cancel"
@@ -16,13 +16,26 @@
         </pop-button>
       </div>
       <div class="search__bottom">
-        <div class="search__message" v-if="isSearching">
+        <div class="search__message" v-show="movies === null">
+          <span
+            >Find movies through search bar<span class="search__emoji"
+              >☝️</span
+            ></span
+          >
+        </div>
+        <div class="search__message" v-show="isSearching">
           <span>Searching<span class="search__emoji">🔍</span></span>
         </div>
-        <div class="search__message" v-else-if="isNotFound">
+        <div
+          class="search__message"
+          v-show="Array.isArray(movies) && movies.length === 0"
+        >
           <span>Nothing found<span class="search__emoji">☹️</span></span>
         </div>
-        <div class="search__results" v-else-if="movies.length >= 1">
+        <div
+          class="search__results"
+          v-show="Array.isArray(movies) && movies.length >= 1"
+        >
           <pop-search-item
             class="search__item"
             v-for="movie of movies"
@@ -33,13 +46,6 @@
             :release_date="movie.release_date"
             @on-click="hClickItem"
           />
-        </div>
-        <div class="search__message" v-else>
-          <span
-            >Find movies through search bar<span class="search__emoji"
-              >☝️</span
-            ></span
-          >
         </div>
       </div>
     </div>
@@ -59,7 +65,7 @@ export default {
   name: "pop-search",
   data() {
     return {
-      movies: [],
+      movies: null,
       BASE: BASE_URL_ASSETS,
       isSearching: false,
       isNotFound: false
@@ -68,25 +74,22 @@ export default {
   methods: {
     search(term) {
       window.clearTimeout(timeoutID);
+      this.isSearching = true;
       timeoutID = window.setTimeout(() => {
         server.movies(BASE_URL_API, term, null, null, null).then(res => {
           this.isSearching = false;
           this.movies = res.data.payload;
-          if (this.movies.length === 0) {
-            this.isNotFound = true;
-          } else {
-            this.isNotFound = false;
-          }
         });
       }, 400);
-
-      this.isSearching = true;
     },
-    hInput(value) {
+    hKeyup(e) {
+      const value = e.target.value;
+      console.log(value);
+
       if (value) {
         this.search(value);
       } else {
-        this.isNotFound = false;
+        this.movies = null;
       }
     },
     hClickCancel() {
