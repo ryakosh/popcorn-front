@@ -9,10 +9,7 @@
         <pop-plaque left="GENRES" :right="movie.genres.join(', ')" />
       </div>
       <div class="movie-details-view__poster">
-        <img
-          style="width: 148.3px; height: 199px;"
-          :src="BASE_URL_ASSETS + movie.poster"
-        />
+        <img :src="`${BASE_URL_ASSETS}P${movie.poster}`" />
       </div>
     </div>
     <div class="movie-details-view__description">
@@ -54,6 +51,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .movie-details-view {
   width: 100%;
   height: 100%;
@@ -69,7 +68,7 @@ export default {
   }
 
   &__data {
-    width: 55%;
+    width: 56%;
     height: auto;
     display: inline-block;
 
@@ -84,6 +83,8 @@ export default {
     margin-right: -10px;
 
     img {
+      width: 148.3px;
+      height: 199px;
       border-top-left-radius: 12px;
       border-bottom-left-radius: 12px;
     }
@@ -92,7 +93,72 @@ export default {
   &__description {
     width: 100%;
     height: auto;
+    color: map-get($LIGHT, secondary);
     margin-top: 10px;
+  }
+}
+
+.DARK .movie-details-view {
+  &__description {
+    color: map-get($DARK, secondary);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .movie-details-view {
+    padding: 14px;
+
+    &__data {
+      width: 50%;
+
+      .plaque {
+        margin-bottom: 14px;
+      }
+    }
+
+    &__poster {
+      margin-right: -14px;
+
+      img {
+        width: 260px;
+        height: 350px;
+        border-top-left-radius: 18px;
+        border-bottom-left-radius: 18px;
+      }
+    }
+    &__description {
+      font-size: 20px;
+      margin-top: 19px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .movie-details-view {
+    padding: 17px;
+
+    &__data {
+      width: 50%;
+
+      .plaque {
+        margin-bottom: 17px;
+      }
+    }
+
+    &__poster {
+      margin-right: -17px;
+
+      img {
+        width: 348px;
+        height: 469px;
+        border-top-left-radius: 22px;
+        border-bottom-left-radius: 22px;
+      }
+    }
+    &__description {
+      font-size: 25px;
+      margin-top: 26px;
+    }
   }
 }
 </style>

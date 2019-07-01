@@ -1,11 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ DARK: isDark }">
     <div class="c">
       <pop-nav
         :showBack="showBack"
         @on-click-back="hClickBack"
         @on-click-logo="hClickLogo"
         @on-click-search="hClickSearch"
+        @on-dark="hDark"
       />
       <pop-search v-show="showSearch" @on-click-cancel="hClickCancel" />
       <router-view></router-view>
@@ -21,7 +22,8 @@ export default {
   data() {
     return {
       showBack: false,
-      showSearch: false
+      showSearch: false,
+      isDark: false
     };
   },
   components: {
@@ -41,6 +43,9 @@ export default {
     hClickCancel() {
       this.showSearch = false;
     },
+    hDark(isDark) {
+      this.isDark = isDark;
+    },
     setShowBack(path) {
       if (path === "/") {
         this.showBack = false;
@@ -50,7 +55,7 @@ export default {
     }
   },
   watch: {
-    $route(to, from) {
+    $route(to) {
       this.setShowBack(to.path);
     }
   },
@@ -60,7 +65,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "./sass/themes";
+
 * {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
@@ -75,16 +82,33 @@ body,
 }
 
 #app {
-  padding: 10px;
+  padding: 8px;
   display: flex;
 }
 
 .c {
   width: 100%;
   height: 100%;
-  border-radius: 20px;
-  background-color: white;
-  box-shadow: 0 0 9px black;
+  border-radius: 27px;
+  background-color: map-get($LIGHT, primary);
+  box-shadow: 0 0 9px map-get($LIGHT, secondary);
   overflow-y: auto;
+}
+
+.DARK .c {
+  background-color: map-get($DARK, primary);
+  box-shadow: map-get($DARK, primary);
+}
+
+@media only screen and (min-width: 600px) {
+  .c {
+    border-radius: 32px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .c {
+    border-radius: 42px;
+  }
 }
 </style>

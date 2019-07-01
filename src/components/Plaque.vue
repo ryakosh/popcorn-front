@@ -22,14 +22,16 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .plaque {
   width: auto;
   height: 24px;
   max-width: 100%;
   padding: 3px 6px;
   border-radius: 20px;
-  background-color: white;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.65);
+  background-color: map-get($LIGHT, primary);
+  box-shadow: 0 0 3px map-get($LIGHT, secondary);
   font-size: 10px;
   display: inline-flex;
   align-items: center;
@@ -38,8 +40,8 @@ export default {
     width: auto;
     padding: 5px;
     border-radius: 20px;
-    color: white;
-    background-color: #4c4a48;
+    color: map-get($LIGHT, text);
+    background-color: map-get($LIGHT, secondary);
     box-shadow: inherit;
   }
 
@@ -47,6 +49,50 @@ export default {
     margin-left: 7px;
     overflow-x: auto;
     white-space: nowrap;
+  }
+}
+
+.DARK .plaque {
+  background-color: map-get($DARK, primary);
+  box-shadow: 0 0 3px map-get($DARK, secondary);
+
+  &__left {
+    background-color: map-get($DARK, secondary);
+    color: map-get($DARK, text);
+  }
+
+  &__right {
+    color: map-get($DARK, secondary);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .plaque {
+    height: 34px;
+    padding: 8px 9px;
+    font-size: 15px;
+
+    &__left {
+      padding: 6px;
+    }
+    &__right {
+      margin-left: 12px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .plaque {
+    height: 49px;
+    padding: 9px 10px;
+    font-size: 20px;
+
+    &__left {
+      padding: 7px;
+    }
+    &__right {
+      margin-left: 13px;
+    }
   }
 }
 </style>

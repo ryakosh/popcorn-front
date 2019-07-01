@@ -1,7 +1,7 @@
 <template>
   <pop-card>
     <div class="movie-card" @click="hClick">
-      <img class="movie-card__poster" :src="baseURL + movie.poster" />
+      <img class="movie-card__poster" :src="`${baseURL}P${movie.poster}`" />
       <span class="movie-card__title">{{ movie.title }}</span>
     </div>
   </pop-card>
@@ -34,6 +34,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .movie-card {
   width: 100%;
   height: 100%;
@@ -49,14 +51,49 @@ export default {
     max-width: 95%;
     height: 22px;
     display: inline-block;
-    padding: 5px;
+    padding: 5px 8px 5px 5px;
     margin-top: 6.9px;
     border-radius: 0 20px 20px 0;
-    background-color: #2c3e50;
+    background-color: map-get($LIGHT, secondary);
     font-size: 10px;
-    color: white;
+    color: map-get($LIGHT, text);
     white-space: nowrap;
     overflow-x: auto;
+  }
+}
+
+.DARK .movie-card {
+  &__title {
+    background-color: map-get($DARK, secondary);
+    color: map-get($DARK, text);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .movie-card {
+    &__poster {
+      width: 152.66px;
+      height: 225.55px;
+    }
+    &__title {
+      height: 27.38px;
+      padding: 7px 10px 7px 5px;
+      font-size: 13px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .movie-card {
+    &__poster {
+      width: 211.81px;
+      height: 308.09px;
+    }
+    &__title {
+      height: 31.94px;
+      padding: 7px 10px 7px 5px;
+      font-size: 16px;
+    }
   }
 }
 </style>

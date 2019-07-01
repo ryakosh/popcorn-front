@@ -37,11 +37,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../sass/themes";
+
 .search-item {
   width: 100%;
   height: 47px;
   border-radius: 7px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  background-color: map-get($LIGHT, primary);
+  box-shadow: 0 0 6px map-get($LIGHT, secondary);
   display: flex;
   align-items: center;
 
@@ -52,8 +55,48 @@ export default {
   }
 
   &__title {
+    color: map-get($LIGHT, secondary);
     font-size: 11px;
     margin-left: 7px;
+  }
+}
+
+.DARK .search-item {
+  background-color: map-get($DARK, primary);
+  box-shadow: 0 0 6px map-get($DARK, secondary);
+
+  &__title {
+    color: map-get($DARK, secondary);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .search-item {
+    height: 68px;
+    border-radius: 10px;
+
+    &__poster {
+      width: 46.96px;
+      height: 68px;
+    }
+    &__title {
+      font-size: 16px;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .search-item {
+    height: 94px;
+    border-radius: 10px;
+
+    &__poster {
+      width: 64.51px;
+      height: 94px;
+    }
+    &__title {
+      font-size: 21px;
+    }
   }
 }
 </style>
