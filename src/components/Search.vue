@@ -42,7 +42,7 @@
             :key="movie.id"
             :movie_id="movie.movie_id"
             :title="movie.title"
-            :poster="BASE + movie.poster"
+            :poster="`${BASE}P${movie.poster}`"
             :release_date="movie.release_date"
             @on-click="hClickItem"
           />
@@ -118,7 +118,7 @@ export default {
   width: 100%;
   height: 100%;
   margin: 0;
-  padding: 10px;
+  padding: 8px;
   display: flex;
   position: fixed;
   top: 0;
@@ -127,7 +127,8 @@ export default {
   .search {
     width: 100%;
     height: 100%;
-    border-radius: 25px;
+    color: map-get($LIGHT, secondary);
+    border-radius: 27px;
     background-color: map-get($LIGHT, primary);
     overflow-y: auto;
     display: flex;
@@ -164,7 +165,7 @@ export default {
       font-size: 22px;
     }
     &__emoji {
-      font-size: 40px;
+      font-size: 33px;
     }
     &__item {
       margin-bottom: 10px;
@@ -174,6 +175,7 @@ export default {
 
 .DARK .c-search {
   .search {
+    color: map-get($DARK, secondary);
     background-color: map-get($DARK, primary);
 
     &__cancel {
@@ -185,13 +187,13 @@ export default {
 @media only screen and (min-width: 600px) {
   .c-search {
     .search {
-      border-radius: 30px;
+      border-radius: 32px;
 
       &__message {
         font-size: 34px;
       }
       &__emoji {
-        font-size: 54px;
+        font-size: 47px;
       }
     }
   }
@@ -200,13 +202,13 @@ export default {
 @media only screen and (min-width: 768px) {
   .c-search {
     .search {
-      border-radius: 40px;
+      border-radius: 42px;
 
       &__message {
         font-size: 46px;
       }
       &__emoji {
-        font-size: 66px;
+        font-size: 59px;
       }
     }
   }
