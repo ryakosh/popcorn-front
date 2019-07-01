@@ -82,14 +82,14 @@ body,
 }
 
 #app {
-  padding: 10px;
+  padding: 8px;
   display: flex;
 }
 
 .c {
   width: 100%;
   height: 100%;
-  border-radius: 25px;
+  border-radius: 27px;
   background-color: map-get($LIGHT, primary);
   box-shadow: 0 0 9px map-get($LIGHT, secondary);
   overflow-y: auto;
@@ -102,13 +102,13 @@ body,
 
 @media only screen and (min-width: 600px) {
   .c {
-    border-radius: 30px;
+    border-radius: 32px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .c {
-    border-radius: 40px;
+    border-radius: 42px;
   }
 }
 </style>
