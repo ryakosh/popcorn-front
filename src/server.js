@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const BASE_URL_API = "http://localhost:8000/popcorn/";
-export const BASE_URL_ASSETS = "http://localhost:80/assets/";
+export const BASE_URL_API = "http://193.176.241.232:8000/popcorn/";
+export const BASE_URL_ASSETS = "http://193.176.241.232:80/assets/";
 
 export class Server {
   constructor() {
