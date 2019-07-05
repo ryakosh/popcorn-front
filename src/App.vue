@@ -10,6 +10,11 @@
       />
       <pop-search v-show="showSearch" @on-click-cancel="hClickCancel" />
       <router-view></router-view>
+      <pop-notification
+        :type="notification.type"
+        :msg="notification.msg"
+        :show="notification.show"
+      />
     </div>
   </div>
 </template>
@@ -17,18 +22,25 @@
 <script>
 import Nav from "./components/Nav.vue";
 import Search from "./components/Search.vue";
+import Notification from "./components/Notification.vue";
 
 export default {
   data() {
     return {
       showBack: false,
       showSearch: false,
-      isDark: false
+      isDark: false,
+      notification: {
+        type: "SUCCESS",
+        msg: "",
+        show: false
+      }
     };
   },
   components: {
     "pop-nav": Nav,
-    "pop-search": Search
+    "pop-search": Search,
+    "pop-notification": Notification
   },
   methods: {
     hClickBack() {
@@ -84,15 +96,15 @@ body,
 #app {
   padding: 8px;
   display: flex;
-}
 
-.c {
-  width: 100%;
-  height: 100%;
-  border-radius: 27px;
-  background-color: map-get($LIGHT, primary);
-  box-shadow: 0 0 9px map-get($LIGHT, secondary);
-  overflow-y: auto;
+  .c {
+    width: 100%;
+    height: 100%;
+    border-radius: 27px;
+    background-color: map-get($LIGHT, primary);
+    box-shadow: 0 0 9px map-get($LIGHT, secondary);
+    overflow-y: auto;
+  }
 }
 
 .DARK .c {
