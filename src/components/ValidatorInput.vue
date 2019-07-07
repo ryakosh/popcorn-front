@@ -1,24 +1,32 @@
 <template>
-  <div class="validator-text-input">
+  <div
+    :class="[
+      'validator-input',
+      {
+        'validator-input_valid': this.isValid,
+        'validator-input_in-valid': !this.isValid && this.value
+      }
+    ]"
+  >
     <pop-text-input
-      class="validator-text-input__field"
+      class="validator-input__field"
       @input="hInput"
       :placeholder="subject"
     />
 
-    <div class="validator-text-input__feedback">
-      <span class="validator-text-input__subject"> {{ subject }} should: </span>
-      <div class="validator-text-input__validations">
+    <div class="validator-input__feedback">
+      <span class="validator-input__subject">{{ subject }} should:</span>
+      <div class="validator-input__validations">
         <div
-          class="validator-text-input__validation"
+          class="validator-input__validation"
           v-for="(validator, i) of validators"
           :key="i"
         >
           <div
             :class="[
-              'validator-text-input__check',
+              'validator-input__check',
               {
-                'validator-text-input__check_valid': validations[i]
+                'validator-input__check_valid': validations[i]
               }
             ]"
           ></div>
@@ -33,9 +41,11 @@
 import TextInput from "./TextInput.vue";
 
 export default {
-  name: "pop-validator-text-input",
+  name: "pop-validator-input",
   data() {
     return {
+      value: "",
+      isValid: false,
       validations: []
     };
   },
@@ -64,9 +74,10 @@ export default {
         this.$set(this.validations, i, validator(value));
       });
 
-      const isValid = this.validations.every(validation => validation);
+      this.isValid = this.validations.every(validation => validation);
+      this.value = value;
 
-      this.$emit("on-input", { value, isValid });
+      this.$emit("on-input", { value: this.value, isValid: this.isValid });
     }
   },
   components: {
@@ -82,15 +93,23 @@ export default {
 <style lang="scss">
 @import "../sass/_themes.scss";
 
-.validator-text-input {
+.validator-input {
   width: 100%;
   height: auto;
+  color: map-get($LIGHT, secondary);
   display: flex;
   flex-direction: column;
   align-items: center;
 
   &__field {
     width: 100%;
+    transition: box-shadow 0.4s;
+  }
+  &_valid &__field {
+    box-shadow: 0 0 6px #388e3c;
+  }
+  &_in-valid &__field {
+    box-shadow: 0 0 6px #d32f2f;
   }
 
   &__field:focus + &__feedback {
@@ -132,10 +151,20 @@ export default {
     margin-right: 6px;
     background-color: #d32f2f;
     border-radius: 50%;
+    transition: background-color, 0.4s;
 
     &_valid {
       background-color: #388e3c;
     }
+  }
+}
+
+.DARK .validator-input {
+  color: map-get($DARK, secondary);
+
+  &__feedback {
+    background-color: map-get($DARK, primary);
+    box-shadow: 0 0 6px map-get($DARK, secondary);
   }
 }
 </style>
