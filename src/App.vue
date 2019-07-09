@@ -24,6 +24,8 @@ import Nav from "./components/Nav.vue";
 import Search from "./components/Search.vue";
 import Notification from "./components/Notification.vue";
 
+let nTimeoutID = null;
+
 export default {
   data() {
     return {
@@ -57,6 +59,15 @@ export default {
     },
     hDark(isDark) {
       this.isDark = isDark;
+    },
+    hNotify(notification) {
+      this.notification = Object.assign({}, this.notification, notification);
+      this.notification.show = true;
+
+      window.clearTimeout(nTimeoutID);
+      nTimeoutID = window.setTimeout(() => {
+        this.notification.show = false;
+      }, 3000);
     },
     setShowBack(path) {
       if (path === "/") {
