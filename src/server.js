@@ -1,7 +1,26 @@
 import axios from "axios";
 
-export const BASE_URL_API = "http://193.176.241.232:8000/popcorn/";
-export const BASE_URL_ASSETS = "http://193.176.241.232:80/assets/";
+export const BASE_URL_API = "http://localhost:8000/popcorn/";
+export const BASE_URL_ASSETS = "http://localhost:80/assets/";
+
+const errorMapping = {
+  UserNFound: "Incorrect username or password",
+  UnameTaken: "Username is taken",
+  UnameInvalid: "Username is invalid",
+  UnameRequired: "Username is required",
+  EmailTaken: "Email address already in use",
+  EmailInvalid: "Email is invalid",
+  EmailRequired: "Email is required",
+  PwdInvalid: "Password is invalid",
+  PwdRequired: "Password is required"
+};
+
+export function getErrorMsg(error, backupPhrase) {
+  if (error) {
+    return errorMapping[error];
+  }
+  return backupPhrase;
+}
 
 export class Server {
   constructor() {
