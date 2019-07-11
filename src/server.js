@@ -7,12 +7,9 @@ const errorMapping = {
   UserNFound: "Incorrect username or password",
   UnameTaken: "Username is taken",
   UnameInvalid: "Username is invalid",
-  UnameRequired: "Username is required",
   EmailTaken: "Email address already in use",
   EmailInvalid: "Email is invalid",
-  EmailRequired: "Email is required",
-  PwdInvalid: "Password is invalid",
-  PwdRequired: "Password is required"
+  PwdInvalid: "Password is invalid"
 };
 
 export function getErrorMsg(error, backupPhrase) {
@@ -26,8 +23,7 @@ export class Server {
   constructor() {
     this.cache = {
       movies: {},
-      movie: {},
-      signup: {}
+      movie: {}
     };
   }
 
@@ -55,8 +51,12 @@ export class Server {
     return res;
   }
 
-  signup(baseURL, uname, pwd, email) {
+  signup(baseURL, email, uname, pwd) {
     return axios.post(`${baseURL}auth/signup`, { uname, pwd, email });
+  }
+
+  signin(baseURL, uname, pwd) {
+    return axios.post(`${baseURL}auth/signin`, { uname, pwd });
   }
 
   addCache(req, k, v) {
