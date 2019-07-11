@@ -8,8 +8,12 @@
         @on-click-search="hClickSearch"
         @on-dark="hDark"
       />
-      <pop-search v-show="showSearch" @on-click-cancel="hClickCancel" />
-      <router-view></router-view>
+      <pop-search
+        v-show="showSearch"
+        @on-click-cancel="hClickCancel"
+        @on-notify="hNotify"
+      />
+      <router-view @on-notify="hNotify"></router-view>
       <pop-notification
         :type="notification.type"
         :msg="notification.msg"
@@ -67,7 +71,7 @@ export default {
       window.clearTimeout(nTimeoutID);
       nTimeoutID = window.setTimeout(() => {
         this.notification.show = false;
-      }, 3000);
+      }, 4000);
     },
     setShowBack(path) {
       if (path === "/") {

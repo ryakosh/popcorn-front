@@ -29,7 +29,12 @@
 
 <script>
 import MovieList from "../components/MovieList.vue";
-import { server, BASE_URL_API, BASE_URL_ASSETS } from "../server.js";
+import {
+  server,
+  BASE_URL_API,
+  BASE_URL_ASSETS,
+  getErrorMsg
+} from "../server.js";
 
 const filterGenres = ["Action", "Adventure", "Drama", "Fantasy"];
 
@@ -67,7 +72,21 @@ export default {
           this[`${filterGenre.toLowerCase()}Movies`] = res.data.payload;
         })
         .catch(err => {
-          console.log("fuck");
+          if (err.response) {
+            const res = err.response;
+
+            this.$emit("on-notify", {
+              type: "ERROR",
+              msg: getErrorMsg(res.data.error, res.statusText)
+            });
+          } else if (err.request) {
+            this.$emit("on-notify", {
+              type: "ERROR",
+              msg: getErrorMsg(null, "Error connecting to the server")
+            });
+          } else {
+            console.error("Error creating the request object");
+          }
         });
     }
   }

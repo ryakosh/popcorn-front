@@ -53,7 +53,12 @@
 </template>
 
 <script>
-import { server, BASE_URL_API, BASE_URL_ASSETS } from "../server.js";
+import {
+  server,
+  BASE_URL_API,
+  BASE_URL_ASSETS,
+  getErrorMsg
+} from "../server.js";
 
 import TextInput from "./TextInput.vue";
 import Button from "./Button.vue";
@@ -75,10 +80,31 @@ export default {
       window.clearTimeout(timeoutID);
       this.isSearching = true;
       timeoutID = window.setTimeout(() => {
-        server.movies(BASE_URL_API, term, null, null, null).then(res => {
-          this.isSearching = false;
-          this.movies = res.data.payload;
-        });
+        server
+          .movies(BASE_URL_API, term, null, null, null)
+          .then(res => {
+            this.isSearching = false;
+            this.movies = res.data.payload;
+          })
+          .catch(err => {
+            this.isSearching = false;
+
+            if (err.response) {
+              const res = err.response;
+
+              this.$emit("on-notify", {
+                type: "ERROR",
+                msg: getErrorMsg(res.data.error, res.statusText)
+              });
+            } else if (err.request) {
+              this.$emit("on-notify", {
+                type: "ERROR",
+                msg: getErrorMsg(null, "Error connecting to the server")
+              });
+            } else {
+              console.error("Error creating the request object");
+            }
+          });
       }, 400);
     },
     hKeyup(e) {

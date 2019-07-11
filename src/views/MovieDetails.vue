@@ -20,7 +20,12 @@
 
 <script>
 import Plaque from "../components/Plaque.vue";
-import { server, BASE_URL_API, BASE_URL_ASSETS } from "../server.js";
+import {
+  server,
+  BASE_URL_API,
+  BASE_URL_ASSETS,
+  getErrorMsg
+} from "../server.js";
 
 export default {
   name: "pop-movie-details-view",
@@ -35,9 +40,28 @@ export default {
   },
   methods: {
     updateMovie(id) {
-      server.movie(BASE_URL_API, id).then(res => {
-        this.movie = res.data.payload;
-      });
+      server
+        .movie(BASE_URL_API, id)
+        .then(res => {
+          this.movie = res.data.payload;
+        })
+        .catch(err => {
+          if (err.response) {
+            const res = err.response;
+
+            this.$emit("on-notify", {
+              type: "ERROR",
+              msg: getErrorMsg("NotFound", res.statusText)
+            });
+          } else if (err.request) {
+            this.$emit("on-notify", {
+              type: "ERROR",
+              msg: getErrorMsg(null, "Error connecting to the server")
+            });
+          } else {
+            console.error("Error creating the request object");
+          }
+        });
     }
   },
   created() {

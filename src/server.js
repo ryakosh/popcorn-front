@@ -9,7 +9,8 @@ const errorMapping = {
   UnameInvalid: "Username is invalid",
   EmailTaken: "Email address already in use",
   EmailInvalid: "Email is invalid",
-  PwdInvalid: "Password is invalid"
+  PwdInvalid: "Password is invalid",
+  NotFound: "The requested resource was not found"
 };
 
 export function getErrorMsg(error, backupPhrase) {
