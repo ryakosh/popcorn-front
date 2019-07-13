@@ -1,5 +1,9 @@
+export const keys = {
+  TOKEN: "token"
+};
+
 const _storage = window.localStorage;
-const store = {
+export const store = {
   set(k, v) {
     _storage.setItem(k, v);
   },
@@ -10,5 +14,3 @@ const store = {
     _storage.removeItem(k);
   }
 };
-
-export default store;

@@ -30,7 +30,9 @@
               }
             ]"
           ></div>
-          <div>{{ getValidatorDescription(validator) }}</div>
+          <div class="validator-input__desc">
+            {{ validator.description }}
+          </div>
         </div>
       </div>
     </div>
@@ -60,18 +62,9 @@ export default {
     }
   },
   methods: {
-    getValidatorDescription(func) {
-      let description = func.name.split("_");
-
-      if (description[0] === this.subject.toLowerCase()) {
-        description.splice(0, 1);
-      }
-
-      return description.join(" ");
-    },
     hInput(value) {
       this.validators.forEach((validator, i) => {
-        this.$set(this.validations, i, validator(value));
+        this.$set(this.validations, i, validator.func(value));
       });
 
       this.isValid = this.validations.every(validation => validation);
@@ -156,6 +149,10 @@ export default {
     &_valid {
       background-color: #388e3c;
     }
+  }
+
+  &__desc {
+    width: 100%;
   }
 }
 
