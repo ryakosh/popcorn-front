@@ -117,6 +117,7 @@ export default {
 
   &__back {
     background-image: url("../assets/nav/back-LIGHT.svg");
+    background-size: 24.45px 14.69px;
     transform: translateX(-30px);
     opacity: 0;
     transition-property: transform, opacity;
@@ -125,6 +126,7 @@ export default {
   }
   &__auth {
     background-image: url("../assets/nav/auth-LIGHT.svg");
+    background-size: 19.05px 26.74px;
     transform: translateX(0);
     transition: transform 0.4s;
   }
