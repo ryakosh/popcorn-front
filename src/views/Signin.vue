@@ -126,7 +126,8 @@ export default {
     width: 100%;
     height: 100%;
     padding: 30px;
-    display: flex;
+    display: block;
+    text-align: center;
     margin-top: 80px;
     flex-direction: column;
     align-items: center;
