@@ -1,16 +1,30 @@
 <template>
   <div class="nav">
     <div class="nav__left">
-      <transition name="fade-scroll_back">
-        <pop-button
-          class="nav__back"
-          v-show="showBack"
-          @on-click="hClickBack"
-          circle
-          bgImg
-        >
-        </pop-button>
-      </transition>
+      <pop-button
+        :class="[
+          'nav__back',
+          {
+            'fade-scroll_back': showBack
+          }
+        ]"
+        @on-click="hClickBack"
+        circle
+        bgImg
+      >
+      </pop-button>
+      <pop-button
+        :class="[
+          'nav__auth',
+          {
+            scroll_auth: showBack
+          }
+        ]"
+        @on-click="hClickAuth"
+        circle
+        bgImg
+      >
+      </pop-button>
     </div>
     <div class="nav__center">
       <img @click="hClickLogo" src="../assets/popcorn.svg" />
@@ -54,6 +68,9 @@ export default {
     hClickBack() {
       this.$emit("on-click-back");
     },
+    hClickAuth() {
+      this.$emit("on-click-auth");
+    },
     hClickLogo() {
       this.$emit("on-click-logo");
     },
@@ -70,21 +87,13 @@ export default {
 <style lang="scss">
 @import "../sass/themes";
 
-.fade-scroll_back-enter-active,
-.fade-scroll_back-leave-active {
-  transition-property: transform, opacity;
-  transition-duration: 0.4s;
-  position: absolute;
+.fade-scroll_back {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
 }
-.fade-scroll_back-enter,
-.fade-scroll_back-leave-to {
-  transform: translateX(-30px);
-  opacity: 0;
-}
-.fade-scroll_back-enter-to,
-.fade-scroll_back-leave {
-  transform: translateX(0);
-  opacity: 1;
+.scroll_auth {
+  /* 35.6px button size + 10px spacing */
+  transform: translateX(45.6px) !important;
 }
 
 .nav {
@@ -103,10 +112,21 @@ export default {
 
   &__left {
     height: 35.6px;
+    display: inline-block;
   }
 
   &__back {
     background-image: url("../assets/nav/back-LIGHT.svg");
+    transform: translateX(-30px);
+    opacity: 0;
+    transition-property: transform, opacity;
+    transition-duration: 0.4s;
+    position: absolute;
+  }
+  &__auth {
+    background-image: url("../assets/nav/auth-LIGHT.svg");
+    transform: translateX(0);
+    transition: transform 0.4s;
   }
 
   &__right {

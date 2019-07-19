@@ -4,6 +4,7 @@
       <pop-nav
         :showBack="showBack"
         @on-click-back="hClickBack"
+        @on-click-auth="hClickAuth"
         @on-click-logo="hClickLogo"
         @on-click-search="hClickSearch"
         @on-dark="hDark"
@@ -51,6 +52,9 @@ export default {
   methods: {
     hClickBack() {
       this.$router.go(-1);
+    },
+    hClickAuth() {
+      this.$router.push("/signup");
     },
     hClickLogo() {
       this.$router.push("/");
