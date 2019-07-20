@@ -110,20 +110,17 @@ body,
   width: 100%;
   height: 100%;
   margin: 0;
-}
-
-#app {
   padding: 8px;
   display: flex;
+}
 
-  .c {
-    width: 100%;
-    height: 100%;
-    border-radius: 27px;
-    background-color: map-get($LIGHT, primary);
-    box-shadow: 0 0 9px map-get($LIGHT, secondary);
-    overflow-y: auto;
-  }
+.c {
+  width: 100%;
+  height: 100%;
+  border-radius: 27px;
+  background-color: map-get($LIGHT, primary);
+  box-shadow: 0 0 9px map-get($LIGHT, secondary);
+  overflow-y: auto;
 }
 
 .DARK .c {

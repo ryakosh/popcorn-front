@@ -159,12 +159,12 @@ export default {
     width: 100%;
     height: auto;
     text-align: center;
+    color: map-get($LIGHT, secondary);
   }
 
   &__mode {
     margin-top: 40px;
     font-size: 25px;
-    color: map-get($LIGHT, secondary);
     display: inline-block;
   }
 
@@ -188,6 +188,18 @@ export default {
     color: map-get($LIGHT, primary);
     font-size: 14px;
     margin-top: 20px;
+  }
+}
+
+.DARK .signup-view {
+  &__top,
+  &__bottom {
+    color: map-get($DARK, secondary);
+  }
+
+  &__signup {
+    background-color: map-get($DARK, secondary);
+    color: map-get($DARK, primary);
   }
 }
 </style>

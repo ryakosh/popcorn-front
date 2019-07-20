@@ -150,6 +150,10 @@ export default {
     background-image: url("../assets/nav/back-DARK.svg");
   }
 
+  &__auth {
+    background-image: url("../assets/nav/auth-DARK.svg");
+  }
+
   &__theme-switcher {
     background-color: map-get($LIGHT, primary);
   }

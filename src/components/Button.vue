@@ -54,6 +54,7 @@ export default {
   outline: none;
   border-radius: 100px;
   background-color: map-get($LIGHT, primary);
+  color: map-get($LIGHT, secondary);
   font-size: 10px;
 
   &_circle {
@@ -84,6 +85,7 @@ export default {
 
 .DARK .button {
   background-color: map-get($DARK, primary);
+  color: map-get($DARK, secondary);
 
   &_shadow {
     box-shadow: 0 0 6px map-get($DARK, secondary);
