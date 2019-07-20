@@ -66,6 +66,7 @@ export default {
     margin: 13.8px 0 0 18.8px;
     overflow-x: auto;
     display: flex;
+    will-change: transform;
   }
 
   .card {
