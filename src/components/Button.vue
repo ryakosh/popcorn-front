@@ -76,7 +76,8 @@ export default {
   }
 
   &_bg-img {
-    background: no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: 24px 24px;
   }
 }
