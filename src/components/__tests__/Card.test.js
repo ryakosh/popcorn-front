@@ -8,6 +8,7 @@ describe("Card component", () => {
         default: "test"
       }
     });
+
     expect(w.text()).toBe("test");
   });
 });
