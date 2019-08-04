@@ -29,12 +29,7 @@
 
 <script>
 import MovieList from "../components/MovieList.vue";
-import {
-  server,
-  BASE_URL_API,
-  BASE_URL_ASSETS,
-  getErrorMsg
-} from "../server.js";
+import { server, BASE_URL_ASSETS, getErrorMsg } from "../server.js";
 
 const filterGenres = ["Action", "Adventure", "Drama", "Fantasy"];
 
@@ -67,7 +62,7 @@ export default {
   created() {
     for (let filterGenre of filterGenres) {
       server
-        .movies(BASE_URL_API, null, null, null, `genres:${filterGenre}`)
+        .movies(null, null, null, `genres:${filterGenre}`)
         .then(res => {
           this[`${filterGenre.toLowerCase()}Movies`] = res.data.payload;
         })

@@ -45,7 +45,7 @@ import ValidatorInput from "../components/ValidatorInput.vue";
 import Button from "../components/Button.vue";
 
 import { store, keys } from "../store.js";
-import { BASE_URL_API, server, getErrorMsg } from "../server.js";
+import { server, getErrorMsg } from "../server.js";
 import {
   isEmailValid,
   hasUnameValidChars,
@@ -97,7 +97,6 @@ export default {
       ) {
         server
           .signup(
-            BASE_URL_API,
             this.email.value.value,
             this.uname.value.value,
             this.pwd.value.value

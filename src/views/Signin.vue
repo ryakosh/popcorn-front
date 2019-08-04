@@ -37,7 +37,7 @@ import Button from "../components/Button.vue";
 import TextInput from "../components/TextInput.vue";
 
 import { store, keys } from "../store.js";
-import { BASE_URL_API, server, getErrorMsg } from "../server.js";
+import { server, getErrorMsg } from "../server.js";
 
 export default {
   name: "pop-signin-view",
@@ -51,7 +51,7 @@ export default {
     hSigninClick() {
       if (this.uname && this.pwd) {
         server
-          .signin(BASE_URL_API, this.uname, this.pwd)
+          .signin(this.uname, this.pwd)
           .then(res => {
             store.set(keys.TOKEN, res.data.payload.token);
 

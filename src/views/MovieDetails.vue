@@ -20,12 +20,7 @@
 
 <script>
 import Plaque from "../components/Plaque.vue";
-import {
-  server,
-  BASE_URL_API,
-  BASE_URL_ASSETS,
-  getErrorMsg
-} from "../server.js";
+import { server, BASE_URL_ASSETS, getErrorMsg } from "../server.js";
 
 export default {
   name: "pop-movie-details-view",
@@ -41,7 +36,7 @@ export default {
   methods: {
     updateMovie(id) {
       server
-        .movie(BASE_URL_API, id)
+        .movie(id)
         .then(res => {
           this.movie = res.data.payload;
         })

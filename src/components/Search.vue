@@ -53,12 +53,7 @@
 </template>
 
 <script>
-import {
-  server,
-  BASE_URL_API,
-  BASE_URL_ASSETS,
-  getErrorMsg
-} from "../server.js";
+import { server, BASE_URL_ASSETS, getErrorMsg } from "../server.js";
 
 import TextInput from "./TextInput.vue";
 import Button from "./Button.vue";
@@ -81,7 +76,7 @@ export default {
       this.isSearching = true;
       timeoutID = window.setTimeout(() => {
         server
-          .movies(BASE_URL_API, term, null, null, null)
+          .movies(term, null, null, null)
           .then(res => {
             this.isSearching = false;
             this.movies = res.data.payload;
