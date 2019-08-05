@@ -48,7 +48,7 @@ export class Server {
     return res;
   }
 
-  movie(baseURL, id) {
+  movie(id) {
     if (this.hasCache("movie", id)) {
       return this.getCache("movie", id);
     }
@@ -58,11 +58,11 @@ export class Server {
     return res;
   }
 
-  signup(baseURL, email, uname, pwd) {
+  signup(email, uname, pwd) {
     return axios.post(`${BASE_URL_API}auth/signup`, { uname, pwd, email });
   }
 
-  signin(baseURL, uname, pwd) {
+  signin(uname, pwd) {
     return axios.post(`${BASE_URL_API}auth/signin`, { uname, pwd });
   }
 
