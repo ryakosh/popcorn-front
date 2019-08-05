@@ -8,6 +8,7 @@
     <div class="signup-view__center">
       <pop-validator-input
         class="signup-view__input"
+        type="email"
         subject="Email"
         :validators="email.validators"
         @on-input="email.value = $event"
@@ -20,6 +21,7 @@
       />
       <pop-validator-input
         class="signup-view__input"
+        type="password"
         subject="Password"
         :validators="pwd.validators"
         @on-input="pwd.value = $event"

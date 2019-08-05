@@ -13,6 +13,7 @@
       />
       <pop-text-input
         class="signin-view__input"
+        type="password"
         placeholder="Password"
         v-model="pwd"
       />
