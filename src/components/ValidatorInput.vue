@@ -10,6 +10,7 @@
   >
     <pop-text-input
       class="validator-input__field"
+      :type="type"
       @input="hInput"
       :placeholder="subject"
     />
@@ -59,6 +60,10 @@ export default {
     validators: {
       type: Array,
       required: true
+    },
+    type: {
+      type: String,
+      default: "text"
     }
   },
   methods: {
