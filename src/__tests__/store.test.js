@@ -1,16 +1,17 @@
-import { storage } from "../storage.js";
+import store from "../store.js";
+import { storage, keys } from "../storage.js";
 
-describe("storage module", () => {
-  it("should set, get and remove keys correctly", () => {
-    const test = {
-      key: "key",
-      value: "value"
-    };
+describe("store module", () => {
+  it("token setter and getter should work correctly", () => {
+    const testToken = "testToken";
+    store.token = testToken;
+    expect(store.token).toBe(testToken);
+    expect(storage.get(keys.TOKEN)).toBe(testToken);
 
-    storage.set(test.key, test.value);
-    expect(storage.get(test.key)).toBe(test.value);
+    store.token = ""; // Any falsy value should work
+    expect(store.token).toBe(null);
 
-    storage.remove(test.key);
-    expect(storage.get(test.key)).toBeNull();
+    store.token = null;
+    expect(store.token).toBe(null);
   });
 });
