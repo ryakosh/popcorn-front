@@ -5,7 +5,8 @@ describe("Nav component", () => {
   it("emits appropriate events when it's buttons get clicked", () => {
     const w = shallowMount(Nav, {
       propsData: {
-        showBack: true
+        showBack: true,
+        showAuth: true
       }
     });
 
@@ -27,7 +28,8 @@ describe("Nav component", () => {
   it("applies the appropriate transition classes for back button", () => {
     const w = shallowMount(Nav, {
       propsData: {
-        showBack: false
+        showBack: false,
+        showAuth: true
       }
     });
     const back = w.find(".nav__back");

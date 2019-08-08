@@ -20,6 +20,7 @@
             scroll_auth: showBack
           }
         ]"
+        v-if="showAuth"
         @on-click="hClickAuth"
         circle
         bgImg
@@ -60,6 +61,10 @@ export default {
   },
   props: {
     showBack: {
+      type: Boolean,
+      required: true
+    },
+    showAuth: {
       type: Boolean,
       required: true
     }
