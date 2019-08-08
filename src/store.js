@@ -4,12 +4,6 @@ export default {
   state: {
     token: ""
   },
-  get token() {
-    if (this.state.token) {
-      return this.state.token;
-    }
-    return storage.get(keys.TOKEN);
-  },
   setToken(token) {
     if (token) {
       this.state.token = token;

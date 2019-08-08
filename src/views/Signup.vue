@@ -107,6 +107,8 @@ export default {
               type: "SUCCESS",
               msg: "Successfully signed up"
             });
+
+            this.$router.push("/signin");
           })
           .catch(err => {
             if (err.response) {

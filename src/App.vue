@@ -1,8 +1,9 @@
 <template>
-  <div id="app" :class="{ DARK: isDark }">
+  <div id="app" :class="{ DARK: prvt.isDark }">
     <div class="c">
       <pop-nav
-        :showBack="showBack"
+        :showBack="prvt.showBack"
+        :showAuth="!shrd.token"
         @on-click-back="hClickBack"
         @on-click-auth="hClickAuth"
         @on-click-logo="hClickLogo"
@@ -13,15 +14,15 @@
     </div>
 
     <pop-search
-      v-show="showSearch"
+      v-show="prvt.showSearch"
       @on-click-cancel="hClickCancel"
       @on-notify="hNotify"
     />
 
     <pop-notification
-      :type="notification.type"
-      :msg="notification.msg"
-      :show="notification.show"
+      :type="prvt.notification.type"
+      :msg="prvt.notification.msg"
+      :show="prvt.notification.show"
     />
   </div>
 </template>
@@ -30,19 +31,23 @@
 import Nav from "./components/Nav.vue";
 import Search from "./components/Search.vue";
 import Notification from "./components/Notification.vue";
+import store from "./store.js";
 
 let nTimeoutID = null;
 
 export default {
   data() {
     return {
-      showBack: false,
-      showSearch: false,
-      isDark: false,
-      notification: {
-        type: "SUCCESS",
-        msg: "",
-        show: false
+      shrd: store.state,
+      prvt: {
+        showBack: false,
+        showSearch: false,
+        isDark: false,
+        notification: {
+          type: "SUCCESS",
+          msg: "",
+          show: false
+        }
       }
     };
   },
@@ -62,28 +67,32 @@ export default {
       this.$router.push("/");
     },
     hClickSearch() {
-      this.showSearch = true;
+      this.prvt.showSearch = true;
     },
     hClickCancel() {
-      this.showSearch = false;
+      this.prvt.showSearch = false;
     },
     hDark(isDark) {
-      this.isDark = isDark;
+      this.prvt.isDark = isDark;
     },
     hNotify(notification) {
-      this.notification = Object.assign({}, this.notification, notification);
-      this.notification.show = true;
+      this.prvt.notification = Object.assign(
+        {},
+        this.prvt.notification,
+        notification
+      );
+      this.prvt.notification.show = true;
 
       window.clearTimeout(nTimeoutID);
       nTimeoutID = window.setTimeout(() => {
-        this.notification.show = false;
+        this.prvt.notification.show = false;
       }, 4000);
     },
     setShowBack(path) {
       if (path === "/") {
-        this.showBack = false;
+        this.prvt.showBack = false;
       } else {
-        this.showBack = true;
+        this.prvt.showBack = true;
       }
     }
   },
@@ -94,6 +103,7 @@ export default {
   },
   created() {
     this.setShowBack(window.location.pathname);
+    store.setToken();
   }
 };
 </script>
