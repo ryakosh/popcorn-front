@@ -4,14 +4,21 @@ import { storage, keys } from "../storage.js";
 describe("store module", () => {
   it("token setter and getter should work correctly", () => {
     const testToken = "testToken";
-    store.token = testToken;
-    expect(store.token).toBe(testToken);
+
+    store.setToken(testToken);
+    expect(store.state.token).toBe(testToken);
     expect(storage.get(keys.TOKEN)).toBe(testToken);
 
-    store.token = ""; // Any falsy value should work
-    expect(store.token).toBe(null);
+    store.setToken();
+    expect(store.state.token).toBe(testToken);
+    expect(storage.get(keys.TOKEN)).toBe(testToken);
 
-    store.token = null;
-    expect(store.token).toBe(null);
+    store.setToken("");
+    expect(store.state.token).toBe("");
+    expect(storage.get(keys.TOKEN)).toBe(null);
+
+    store.setToken(null);
+    expect(store.state.token).toBe("");
+    expect(storage.get(keys.TOKEN)).toBe(null);
   });
 });
