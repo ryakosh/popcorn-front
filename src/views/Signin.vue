@@ -37,7 +37,7 @@
 import Button from "../components/Button.vue";
 import TextInput from "../components/TextInput.vue";
 
-import { store, keys } from "../store.js";
+import { storage, keys } from "../storage.js";
 import { server, getErrorMsg } from "../server.js";
 
 export default {
@@ -54,7 +54,7 @@ export default {
         server
           .signin(this.uname, this.pwd)
           .then(res => {
-            store.set(keys.TOKEN, res.data.payload.token);
+            storage.set(keys.TOKEN, res.data.payload.token);
 
             this.$emit("on-notify", {
               type: "SUCCESS",

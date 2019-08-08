@@ -46,7 +46,6 @@
 import ValidatorInput from "../components/ValidatorInput.vue";
 import Button from "../components/Button.vue";
 
-import { store, keys } from "../store.js";
 import { server, getErrorMsg } from "../server.js";
 import {
   isEmailValid,
