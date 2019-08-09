@@ -1,33 +1,42 @@
 <template>
-  <div class="movie-details-view" v-if="movie">
+  <div class="movie-details-view" v-if="prvt.movie">
     <div class="movie-details-view__info">
       <div class="movie-details-view__data">
-        <pop-plaque left="TITLE" :right="movie.title" /><br />
-        <pop-plaque left="STARS" :right="movie.stars.join(', ')" /><br />
-        <pop-plaque left="WRITERS" :right="movie.writers.join(', ')" /><br />
-        <pop-plaque left="DIRECTOR" :right="movie.directors.join(', ')" /><br />
-        <pop-plaque left="GENRES" :right="movie.genres.join(', ')" />
+        <pop-plaque left="TITLE" :right="prvt.movie.title" /><br />
+        <pop-plaque left="STARS" :right="prvt.movie.stars.join(', ')" /><br />
+        <pop-plaque
+          left="WRITERS"
+          :right="prvt.movie.writers.join(', ')"
+        /><br />
+        <pop-plaque
+          left="DIRECTOR"
+          :right="prvt.movie.directors.join(', ')"
+        /><br />
+        <pop-plaque left="GENRES" :right="prvt.movie.genres.join(', ')" />
       </div>
       <div class="movie-details-view__poster">
-        <img :src="`${BASE_URL_ASSETS}P${movie.poster}`" />
+        <img :src="`${shrd.BASE_URL_POSTERS}P${prvt.movie.poster}`" />
       </div>
     </div>
     <div class="movie-details-view__description">
-      {{ movie.description }}
+      {{ prvt.movie.description }}
     </div>
   </div>
 </template>
 
 <script>
 import Plaque from "../components/Plaque.vue";
-import { server, BASE_URL_ASSETS, getErrorMsg } from "../server.js";
+import { server, getErrorMsg } from "../server.js";
+import store from "../store.js";
 
 export default {
   name: "pop-movie-details-view",
   data() {
     return {
-      movie: null,
-      BASE_URL_ASSETS
+      shrd: store.state,
+      prvt: {
+        movie: null
+      }
     };
   },
   components: {
@@ -38,7 +47,7 @@ export default {
       server
         .movie(id)
         .then(res => {
-          this.movie = res.data.payload;
+          this.prvt.movie = res.data.payload;
         })
         .catch(err => {
           if (err.response) {

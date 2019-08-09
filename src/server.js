@@ -4,10 +4,10 @@ const BASE_URL_API =
   process.env.NODE_ENV === "development"
     ? "http://127.0.0.1:8000/popcorn/"
     : "https://api.popcrn.ir:443/popcorn/";
-export const BASE_URL_ASSETS =
+export const BASE_URL_POSTERS =
   process.env.NODE_ENV === "development"
-    ? "http://127.0.0.1:80/assets/"
-    : "https://popcrn.ir:443/assets/";
+    ? "http://127.0.0.1:80/posters/"
+    : "https://popcrn.ir:443/posters/";
 
 const errorMapping = {
   UserNFound: "Incorrect username or password",

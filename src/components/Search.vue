@@ -16,33 +16,36 @@
         </pop-button>
       </div>
       <div class="search__bottom">
-        <div class="search__message" v-show="movies === null && !isSearching">
+        <div
+          class="search__message"
+          v-show="prvt.movies === null && !prvt.isSearching"
+        >
           <span
             >Find movies through search bar<span class="search__emoji"
               >☝️</span
             ></span
           >
         </div>
-        <div class="search__message" v-show="isSearching">
+        <div class="search__message" v-show="prvt.isSearching">
           <span>Searching<span class="search__emoji">🔍</span></span>
         </div>
         <div
           class="search__message"
-          v-show="Array.isArray(movies) && movies.length === 0"
+          v-show="Array.isArray(prvt.movies) && prvt.movies.length === 0"
         >
           <span>Nothing found<span class="search__emoji">☹️</span></span>
         </div>
         <div
           class="search__results"
-          v-show="Array.isArray(movies) && movies.length >= 1"
+          v-show="Array.isArray(prvt.movies) && prvt.movies.length >= 1"
         >
           <pop-search-item
             class="search__item"
-            v-for="movie of movies"
+            v-for="movie of prvt.movies"
             :key="movie.id"
             :movie_id="movie.movie_id"
             :title="movie.title"
-            :poster="`${BASE}P${movie.poster}`"
+            :poster="`${shrd.BASE_URL_POSTERS}P${movie.poster}`"
             :release_date="movie.release_date"
             @on-click="hClickItem"
           />
@@ -53,7 +56,8 @@
 </template>
 
 <script>
-import { server, BASE_URL_ASSETS, getErrorMsg } from "../server.js";
+import { server, getErrorMsg } from "../server.js";
+import store from "../store.js";
 
 import TextInput from "./TextInput.vue";
 import Button from "./Button.vue";
@@ -65,24 +69,26 @@ export default {
   name: "pop-search",
   data() {
     return {
-      movies: null,
-      BASE: BASE_URL_ASSETS,
-      isSearching: false
+      shrd: store.state,
+      prvt: {
+        movies: null,
+        isSearching: false
+      }
     };
   },
   methods: {
     search(term) {
       window.clearTimeout(timeoutID);
-      this.isSearching = true;
+      this.prvt.isSearching = true;
       timeoutID = window.setTimeout(() => {
         server
           .movies(term, null, null, null)
           .then(res => {
-            this.isSearching = false;
-            this.movies = res.data.payload;
+            this.prvt.isSearching = false;
+            this.prvt.movies = res.data.payload;
           })
           .catch(err => {
-            this.isSearching = false;
+            this.prvt.isSearching = false;
 
             if (err.response) {
               const res = err.response;
@@ -108,7 +114,7 @@ export default {
       if (value) {
         this.search(value);
       } else {
-        this.movies = null;
+        this.prvt.movies = null;
       }
     },
     hClickCancel() {

@@ -2,26 +2,26 @@
   <div>
     <pop-movie-list
       name="Action"
-      :movies="actionMovies"
-      :baseURL="BASE_URL_ASSETS"
+      :movies="prvt.actionMovies"
+      :baseURL="shrd.BASE_URL_POSTERS"
       @on-click="hClick"
     />
     <pop-movie-list
       name="Adventure"
-      :movies="adventureMovies"
-      :baseURL="BASE_URL_ASSETS"
+      :movies="prvt.adventureMovies"
+      :baseURL="shrd.BASE_URL_POSTERS"
       @on-click="hClick"
     />
     <pop-movie-list
       name="Drama"
-      :movies="dramaMovies"
-      :baseURL="BASE_URL_ASSETS"
+      :movies="prvt.dramaMovies"
+      :baseURL="shrd.BASE_URL_POSTERS"
       @on-click="hClick"
     />
     <pop-movie-list
       name="Fantasy"
-      :movies="fantasyMovies"
-      :baseURL="BASE_URL_ASSETS"
+      :movies="prvt.fantasyMovies"
+      :baseURL="shrd.BASE_URL_POSTERS"
       @on-click="hClick"
     />
   </div>
@@ -29,7 +29,8 @@
 
 <script>
 import MovieList from "../components/MovieList.vue";
-import { server, BASE_URL_ASSETS, getErrorMsg } from "../server.js";
+import { server, getErrorMsg } from "../server.js";
+import store from "../store.js";
 
 const filterGenres = ["Action", "Adventure", "Drama", "Fantasy"];
 
@@ -37,11 +38,12 @@ export default {
   name: "pop-home-view",
   data() {
     let data = {
-      BASE_URL_ASSETS
+      shrd: store.state,
+      prvt: {}
     };
 
     for (let filterGenre of filterGenres) {
-      data[`${filterGenre.toLowerCase()}Movies`] = [];
+      data.prvt[`${filterGenre.toLowerCase()}Movies`] = [];
     }
 
     return data;
@@ -64,7 +66,7 @@ export default {
       server
         .movies(null, null, null, `genres:${filterGenre}`)
         .then(res => {
-          this[`${filterGenre.toLowerCase()}Movies`] = res.data.payload;
+          this.prvt[`${filterGenre.toLowerCase()}Movies`] = res.data.payload;
         })
         .catch(err => {
           if (err.response) {

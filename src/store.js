@@ -1,8 +1,10 @@
 import { storage, keys } from "./storage.js";
+import { BASE_URL_POSTERS } from "./server.js";
 
 export default {
   state: {
-    token: ""
+    token: "",
+    BASE_URL_POSTERS
   },
   setToken(token) {
     if (token) {
