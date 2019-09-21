@@ -46,7 +46,7 @@
             :movie_id="movie.movie_id"
             :title="movie.title"
             :poster="`${shrd.BASE_URL_POSTERS}P${movie.poster}`"
-            :release_date="movie.release_date"
+            :release_date="movie.release_date.substring(0, 4)"
             @on-click="hClickItem"
           />
         </div>
