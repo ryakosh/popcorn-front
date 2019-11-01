@@ -30,7 +30,8 @@ export class Server {
   constructor() {
     this.cache = {
       movies: {},
-      movie: {}
+      movie: {},
+      movieRating: {}
     };
   }
 
@@ -66,6 +67,49 @@ export class Server {
     return axios.post(`${BASE_URL_API}auth/signin`, { uname, pwd });
   }
 
+  movieRating(token, movieId) {
+    if (this.hasCache("movieRating", movieId)) {
+      return this.getCache("movieRating", movieId);
+    }
+
+    const res = axios.get(`${BASE_URL_API}movies/${movieId}/rate`, {
+      headers: {
+        authorization: Server.authorization(token)
+      }
+    });
+    this.addCache("movieRating", movieId, res);
+    return res;
+  }
+  cMovieRating(token, movieId, userRating) {
+    return axios.post(
+      `${BASE_URL_API}movies/${movieId}/rate`,
+      { user_rating: userRating },
+      {
+        headers: {
+          authorization: Server.authorization(token)
+        }
+      }
+    );
+  }
+  uMovieRating(token, movieId, userRating) {
+    return axios.update(
+      `${BASE_URL_API}movies/${movieId}/rate`,
+      { user_rating: userRating },
+      {
+        headers: {
+          authorization: Server.authorization(token)
+        }
+      }
+    );
+  }
+  dMovieRating(token, movieId) {
+    return axios.delete(`${BASE_URL_API}movies/${movieId}/rate`, {
+      headers: {
+        authorization: Server.authorization(token)
+      }
+    });
+  }
+
   addCache(req, k, v) {
     this.cache[req][k] = v;
   }
@@ -78,8 +122,16 @@ export class Server {
     return this.cache[req].hasOwnProperty(k);
   }
 
+  deleteCache(req, k) {
+    delete this.cache[req][k];
+  }
+
   static genCacheKey(...args) {
     return args.join("");
+  }
+
+  static authorization(token) {
+    return `Bearer ${token}`;
   }
 }
 
