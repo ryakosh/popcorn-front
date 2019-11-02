@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL_API =
   process.env.NODE_ENV === "development"
-    ? "http://127.0.0.1:8000/popcorn/"
+    ? "http://localhost:8000/popcorn/"
     : "https://api.popcrn.ir:443/popcorn/";
 export const BASE_URL_POSTERS =
   process.env.NODE_ENV === "development"
@@ -81,6 +81,7 @@ export class Server {
     return res;
   }
   cMovieRating(token, movieId, userRating) {
+    this.deleteCache("movieRating", movieId);
     return axios.post(
       `${BASE_URL_API}movies/${movieId}/rate`,
       { user_rating: userRating },
@@ -92,7 +93,8 @@ export class Server {
     );
   }
   uMovieRating(token, movieId, userRating) {
-    return axios.update(
+    this.deleteCache("movieRating", movieId);
+    return axios.put(
       `${BASE_URL_API}movies/${movieId}/rate`,
       { user_rating: userRating },
       {
@@ -103,6 +105,7 @@ export class Server {
     );
   }
   dMovieRating(token, movieId) {
+    this.deleteCache("movieRating", movieId);
     return axios.delete(`${BASE_URL_API}movies/${movieId}/rate`, {
       headers: {
         authorization: Server.authorization(token)

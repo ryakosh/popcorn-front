@@ -18,6 +18,9 @@
         <img :src="`${shrd.BASE_URL_POSTERS}P${prvt.movie.poster}`" />
       </div>
     </div>
+    <div class="movie-details-view__actions">
+      <pop-rate-button :userRating="prvt.userRating" @on-rate="hRate" />
+    </div>
     <div class="movie-details-view__description">
       {{ prvt.movie.description }}
     </div>
@@ -26,6 +29,7 @@
 
 <script>
 import Plaque from "../components/Plaque.vue";
+import RateButton from "../components/RateButton.vue";
 import { server, getErrorMsg } from "../server.js";
 import store from "../store.js";
 
@@ -35,12 +39,14 @@ export default {
     return {
       shrd: store.state,
       prvt: {
-        movie: null
+        movie: null,
+        userRating: 0
       }
     };
   },
   components: {
-    "pop-plaque": Plaque
+    "pop-plaque": Plaque,
+    "pop-rate-button": RateButton
   },
   methods: {
     updateMovie(id) {
@@ -66,13 +72,120 @@ export default {
             console.error("Error creating the request object");
           }
         });
+    },
+    updateUserRating() {
+      if (this.shrd.token) {
+        server
+          .movieRating(this.shrd.token, this.$route.params.id)
+          .then(res => {
+            this.prvt.userRating = res.data.payload.user_rating;
+          })
+          .catch(err => {
+            if (err.response) {
+              const res = err.response;
+
+              if (res.data.error === "EntryDNExist") {
+                this.prvt.userRating = 0;
+              } else {
+                this.$emit("on-notify", {
+                  type: "ERROR",
+                  msg: getErrorMsg(res.data.error, res.statusText)
+                });
+              }
+            } else if (err.request) {
+              this.$emit("on-notify", {
+                type: "ERROR",
+                msg: getErrorMsg(null, "Error connecting to the server")
+              });
+            } else {
+              console.error("Error creating the request object");
+            }
+          });
+      }
+    },
+    hRate(userRating) {
+      if (this.shrd.token) {
+        if (userRating >= 1 && userRating <= 5) {
+          if (this.prvt.userRating) {
+            server
+              .uMovieRating(this.shrd.token, this.$route.params.id, userRating)
+              .then(_ => {
+                this.prvt.userRating = userRating;
+              })
+              .catch(err => {
+                if (err.response) {
+                  const res = err.response;
+                  this.$emit("on-notify", {
+                    type: "ERROR",
+                    msg: getErrorMsg(res.data.error, res.statusText)
+                  });
+                } else if (err.request) {
+                  this.$emit("on-notify", {
+                    type: "ERROR",
+                    msg: getErrorMsg(null, "Error connecting to the server")
+                  });
+                } else {
+                  console.error("Error creating the request object");
+                }
+              });
+          } else {
+            server
+              .cMovieRating(this.shrd.token, this.$route.params.id, userRating)
+              .then(_ => {
+                this.prvt.userRating = userRating;
+              })
+              .catch(err => {
+                if (err.response) {
+                  const res = err.response;
+                  this.$emit("on-notify", {
+                    type: "ERROR",
+                    msg: getErrorMsg(res.data.error, res.statusText)
+                  });
+                } else if (err.request) {
+                  this.$emit("on-notify", {
+                    type: "ERROR",
+                    msg: getErrorMsg(null, "Error connecting to the server")
+                  });
+                } else {
+                  console.error("Error creating the request object");
+                }
+              });
+          }
+        } else if (userRating === 0) {
+          server
+            .dMovieRating(this.shrd.token, this.$route.params.id)
+            .then(res => {
+              this.prvt.userRating = 0;
+            })
+            .catch(err => {
+              if (err.response) {
+                const res = err.response;
+                this.$emit("on-notify", {
+                  type: "ERROR",
+                  msg: getErrorMsg(res.data.error, res.statusText)
+                });
+              } else if (err.request) {
+                this.$emit("on-notify", {
+                  type: "ERROR",
+                  msg: getErrorMsg(null, "Error connecting to the server")
+                });
+              } else {
+                console.error("Error creating the request object");
+              }
+            });
+        }
+      } else {
+        this.$router.push("/signup");
+      }
     }
   },
   created() {
     this.updateMovie(this.$route.params.id);
+    this.updateUserRating();
   },
   beforeRouteUpdate(to, from, next) {
     this.updateMovie(to.params.id);
+    this.updateUserRating();
     next();
   }
 };
