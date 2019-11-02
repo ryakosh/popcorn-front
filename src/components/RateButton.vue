@@ -4,12 +4,16 @@
       <pop-button class="rate-button__btn" @on-click="hClickLeft">
         RATE
       </pop-button>
-      <div class="rate-button__user-rating">
-        {{ user_rating }}
+      <div class="rate-button__user-rating" v-if="userRating">
+        {{ userRating }}
       </div>
     </div>
     <div class="rate-button__right" v-show="showRight">
-      <span class="rate-button__action" @click="hClickRight(0)">
+      <span
+        class="rate-button__action"
+        v-if="userRating"
+        @click="hClickRight(0)"
+      >
         X
       </span>
       <div
@@ -34,7 +38,7 @@ export default {
     };
   },
   props: {
-    user_rating: {
+    userRating: {
       type: Number,
       required: true
     }
@@ -46,8 +50,8 @@ export default {
     hClickLeft() {
       this.showRight = !this.showRight;
     },
-    hClickRight(user_rating) {
-      this.$emit("on-rate", user_rating);
+    hClickRight(userRating) {
+      this.$emit("on-rate", userRating);
     }
   }
 };
