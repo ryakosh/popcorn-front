@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { server, getErrorMsg } from "../server.js";
+import { server, handleError } from "../server.js";
 import store from "../store.js";
 
 import TextInput from "./TextInput.vue";
@@ -89,22 +89,7 @@ export default {
           })
           .catch(err => {
             this.prvt.isSearching = false;
-
-            if (err.response) {
-              const res = err.response;
-
-              this.$emit("on-notify", {
-                type: "ERROR",
-                msg: getErrorMsg(res.data.error, res.statusText)
-              });
-            } else if (err.request) {
-              this.$emit("on-notify", {
-                type: "ERROR",
-                msg: getErrorMsg(null, "Error connecting to the server")
-              });
-            } else {
-              console.error("Error creating the request object");
-            }
+            handleError(err, this);
           });
       }, 400);
     },
@@ -189,10 +174,10 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 22px;
+      font-size: 18px;
     }
     &__emoji {
-      font-size: 33px;
+      font-size: 29px;
     }
     &__item {
       margin-bottom: 10px;
@@ -217,10 +202,10 @@ export default {
       border-radius: 32px;
 
       &__message {
-        font-size: 34px;
+        font-size: 30px;
       }
       &__emoji {
-        font-size: 47px;
+        font-size: 43px;
       }
     }
   }
@@ -232,10 +217,10 @@ export default {
       border-radius: 42px;
 
       &__message {
-        font-size: 46px;
+        font-size: 42px;
       }
       &__emoji {
-        font-size: 59px;
+        font-size: 55px;
       }
     }
   }

@@ -46,7 +46,7 @@
 import ValidatorInput from "../components/ValidatorInput.vue";
 import Button from "../components/Button.vue";
 
-import { server, getErrorMsg } from "../server.js";
+import { server, handleError } from "../server.js";
 import {
   isEmailValid,
   hasUnameValidChars,
@@ -110,23 +110,7 @@ export default {
 
             this.$router.push("/signin");
           })
-          .catch(err => {
-            if (err.response) {
-              const res = err.response;
-
-              this.$emit("on-notify", {
-                type: "ERROR",
-                msg: getErrorMsg(res.data.error, res.statusText)
-              });
-            } else if (err.request) {
-              this.$emit("on-notify", {
-                type: "ERROR",
-                msg: getErrorMsg(null, "Error connecting to the server")
-              });
-            } else {
-              console.error("Error creating the request object");
-            }
-          });
+          .catch(err => handleError(err, this));
       } else {
         this.$emit("on-notify", {
           type: "ERROR",

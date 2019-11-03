@@ -26,6 +26,23 @@ export function getErrorMsg(error, backupPhrase) {
   return backupPhrase;
 }
 
+export function handleError(error, component) {
+  if (error.response) {
+    const res = error.response;
+    component.$emit("on-notify", {
+      type: "ERROR",
+      msg: getErrorMsg(res.data.error, res.statusText)
+    });
+  } else if (error.request) {
+    component.$emit("on-notify", {
+      type: "ERROR",
+      msg: getErrorMsg(null, "Error connecting to the server")
+    });
+  } else {
+    console.error("Error creating the request object");
+  }
+}
+
 export class Server {
   constructor() {
     this.cache = {

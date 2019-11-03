@@ -38,7 +38,7 @@ import Button from "../components/Button.vue";
 import TextInput from "../components/TextInput.vue";
 
 import store from "../store.js";
-import { server, getErrorMsg } from "../server.js";
+import { server, handleError } from "../server.js";
 
 export default {
   name: "pop-signin-view",
@@ -63,23 +63,7 @@ export default {
 
             this.$router.push("/");
           })
-          .catch(err => {
-            if (err.response) {
-              const res = err.response;
-
-              this.$emit("on-notify", {
-                type: "ERROR",
-                msg: getErrorMsg(res.data.error, res.statusText)
-              });
-            } else if (err.request) {
-              this.$emit("on-notify", {
-                type: "ERROR",
-                msg: getErrorMsg(null, "Error connecting to the server")
-              });
-            } else {
-              console.error("Error creating the request object");
-            }
-          });
+          .catch(err => handleError(err, this));
       } else {
         this.$emit("on-notify", {
           type: "ERROR",

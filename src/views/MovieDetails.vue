@@ -30,7 +30,7 @@
 <script>
 import Plaque from "../components/Plaque.vue";
 import RateButton from "../components/RateButton.vue";
-import { server, getErrorMsg } from "../server.js";
+import { server, handleError } from "../server.js";
 import store from "../store.js";
 
 export default {
@@ -55,23 +55,7 @@ export default {
         .then(res => {
           this.prvt.movie = res.data.payload;
         })
-        .catch(err => {
-          if (err.response) {
-            const res = err.response;
-
-            this.$emit("on-notify", {
-              type: "ERROR",
-              msg: getErrorMsg("NotFound", res.statusText)
-            });
-          } else if (err.request) {
-            this.$emit("on-notify", {
-              type: "ERROR",
-              msg: getErrorMsg(null, "Error connecting to the server")
-            });
-          } else {
-            console.error("Error creating the request object");
-          }
-        });
+        .catch(err => handleError(err, this));
     },
     updateUserRating() {
       if (this.shrd.token) {
@@ -82,23 +66,11 @@ export default {
           })
           .catch(err => {
             if (err.response) {
-              const res = err.response;
-
-              if (res.data.error === "EntryDNExist") {
+              if (err.response.data.error === "EntryDNExist") {
                 this.prvt.userRating = 0;
               } else {
-                this.$emit("on-notify", {
-                  type: "ERROR",
-                  msg: getErrorMsg(res.data.error, res.statusText)
-                });
+                handleError(err, this);
               }
-            } else if (err.request) {
-              this.$emit("on-notify", {
-                type: "ERROR",
-                msg: getErrorMsg(null, "Error connecting to the server")
-              });
-            } else {
-              console.error("Error creating the request object");
             }
           });
       }
@@ -109,70 +81,25 @@ export default {
           if (this.prvt.userRating) {
             server
               .uMovieRating(this.shrd.token, this.$route.params.id, userRating)
-              .then(_ => {
+              .then(() => {
                 this.prvt.userRating = userRating;
               })
-              .catch(err => {
-                if (err.response) {
-                  const res = err.response;
-                  this.$emit("on-notify", {
-                    type: "ERROR",
-                    msg: getErrorMsg(res.data.error, res.statusText)
-                  });
-                } else if (err.request) {
-                  this.$emit("on-notify", {
-                    type: "ERROR",
-                    msg: getErrorMsg(null, "Error connecting to the server")
-                  });
-                } else {
-                  console.error("Error creating the request object");
-                }
-              });
+              .catch(err => handleError(err, this));
           } else {
             server
               .cMovieRating(this.shrd.token, this.$route.params.id, userRating)
-              .then(_ => {
+              .then(() => {
                 this.prvt.userRating = userRating;
               })
-              .catch(err => {
-                if (err.response) {
-                  const res = err.response;
-                  this.$emit("on-notify", {
-                    type: "ERROR",
-                    msg: getErrorMsg(res.data.error, res.statusText)
-                  });
-                } else if (err.request) {
-                  this.$emit("on-notify", {
-                    type: "ERROR",
-                    msg: getErrorMsg(null, "Error connecting to the server")
-                  });
-                } else {
-                  console.error("Error creating the request object");
-                }
-              });
+              .catch(err => handleError(err, this));
           }
         } else if (userRating === 0) {
           server
             .dMovieRating(this.shrd.token, this.$route.params.id)
-            .then(res => {
+            .then(() => {
               this.prvt.userRating = 0;
             })
-            .catch(err => {
-              if (err.response) {
-                const res = err.response;
-                this.$emit("on-notify", {
-                  type: "ERROR",
-                  msg: getErrorMsg(res.data.error, res.statusText)
-                });
-              } else if (err.request) {
-                this.$emit("on-notify", {
-                  type: "ERROR",
-                  msg: getErrorMsg(null, "Error connecting to the server")
-                });
-              } else {
-                console.error("Error creating the request object");
-              }
-            });
+            .catch(err => handleError(err, this));
         }
       } else {
         this.$router.push("/signup");
