@@ -52,6 +52,7 @@ export default {
     },
     hClickRight(userRating) {
       this.$emit("on-rate", userRating);
+      this.hClickLeft();
     }
   }
 };
