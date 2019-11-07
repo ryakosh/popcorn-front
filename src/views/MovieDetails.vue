@@ -158,11 +158,14 @@ export default {
     }
   }
 
+  &__actions {
+    margin: 14px 0;
+  }
+
   &__description {
     width: 100%;
     height: auto;
     color: map-get($LIGHT, secondary);
-    margin-top: 10px;
   }
 }
 

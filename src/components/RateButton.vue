@@ -74,20 +74,21 @@ export default {
     align-items: center;
   }
   &__btn {
+    padding: 4.555px 6.102px;
     background-color: map-get($LIGHT, secondary);
     box-shadow: 0 0 6px map-get($LIGHT, secondary);
     color: map-get($LIGHT, primary);
-    font-size: 15.5px;
+    font-size: 15px;
   }
   &__user-rating {
-    width: 37px;
-    height: 37px;
+    width: 27px;
+    height: 27px;
     border-radius: 50%;
-    margin: 0 4px 0 3px;
+    margin: 0 1px 0 3px;
     background-color: map-get($LIGHT, secondary);
     box-shadow: 0 0 6px map-get($LIGHT, secondary);
     color: map-get($LIGHT, primary);
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -95,10 +96,10 @@ export default {
   }
 
   &__action {
-    width: 27.59px;
-    height: 27.59px;
+    width: 24.29px;
+    height: 24.29px;
     border-radius: 50%;
-    margin-left: 8px;
+    margin-left: 7px;
     background-color: map-get($LIGHT, secondary);
     box-shadow: 0 0 6px map-get($LIGHT, secondary);
     color: map-get($LIGHT, primary);
