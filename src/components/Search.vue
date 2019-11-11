@@ -83,9 +83,9 @@ export default {
       timeoutID = window.setTimeout(() => {
         server
           .movies(term, null, null, null)
-          .then(res => {
+          .then(movies => {
             this.prvt.isSearching = false;
-            this.prvt.movies = res.data.payload;
+            this.prvt.movies = movies;
           })
           .catch(err => {
             this.prvt.isSearching = false;

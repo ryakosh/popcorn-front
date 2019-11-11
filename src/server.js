@@ -56,24 +56,34 @@ export class Server {
     const k = Server.genCacheKey(search, limit, page, filters);
 
     if (this.hasCache("movies", k)) {
-      return this.getCache("movies", k);
+      return Promise.resolve(this.getCache("movies", k));
     }
 
     const res = axios.get(`${BASE_URL_API}movies`, {
       params: { search, limit, page, filters }
     });
-    this.addCache("movies", k, res);
-    return res;
+
+    return res.then(res => {
+      this.addCache("movies", k, res.data.payload);
+      return res.data.payload;
+    });
   }
 
-  movie(id) {
+  movie(id, token = null) {
     if (this.hasCache("movie", id)) {
-      return this.getCache("movie", id);
+      return Promise.resolve(this.getCache("movie", id));
     }
 
-    const res = axios.get(`${BASE_URL_API}movies/${id}`);
-    this.addCache("movie", id, res);
-    return res;
+    const res = axios.get(`${BASE_URL_API}movies/${id}`, {
+      headers: {
+        authorization: token ? Server.authorization(token) : token
+      }
+    });
+
+    return res.then(res => {
+      this.addCache("movie", id, res.data.payload);
+      return res.data.payload;
+    });
   }
 
   signup(email, uname, pwd) {
@@ -81,52 +91,52 @@ export class Server {
   }
 
   signin(uname, pwd) {
+    this.cache.movie = {}; // TODO: Find a better solution
     return axios.post(`${BASE_URL_API}auth/signin`, { uname, pwd });
   }
 
-  movieRating(token, movieId) {
-    if (this.hasCache("movieRating", movieId)) {
-      return this.getCache("movieRating", movieId);
-    }
+  cMovieRating(token, movieId, userRating) {
+    const res = axios.post(
+      `${BASE_URL_API}movies/${movieId}/rate`,
+      { user_rating: userRating },
+      {
+        headers: {
+          authorization: Server.authorization(token)
+        }
+      }
+    );
 
-    const res = axios.get(`${BASE_URL_API}movies/${movieId}/rate`, {
+    return res.then(() => {
+      this.cache.movie[movieId].u.rating = userRating;
+      return userRating;
+    });
+  }
+  uMovieRating(token, movieId, userRating) {
+    const res = axios.put(
+      `${BASE_URL_API}movies/${movieId}/rate`,
+      { user_rating: userRating },
+      {
+        headers: {
+          authorization: Server.authorization(token)
+        }
+      }
+    );
+
+    return res.then(() => {
+      this.cache.movie[movieId].u.rating = userRating;
+      return userRating;
+    });
+  }
+  dMovieRating(token, movieId) {
+    const res = axios.delete(`${BASE_URL_API}movies/${movieId}/rate`, {
       headers: {
         authorization: Server.authorization(token)
       }
     });
-    this.addCache("movieRating", movieId, res);
-    return res;
-  }
-  cMovieRating(token, movieId, userRating) {
-    this.deleteCache("movieRating", movieId);
-    return axios.post(
-      `${BASE_URL_API}movies/${movieId}/rate`,
-      { user_rating: userRating },
-      {
-        headers: {
-          authorization: Server.authorization(token)
-        }
-      }
-    );
-  }
-  uMovieRating(token, movieId, userRating) {
-    this.deleteCache("movieRating", movieId);
-    return axios.put(
-      `${BASE_URL_API}movies/${movieId}/rate`,
-      { user_rating: userRating },
-      {
-        headers: {
-          authorization: Server.authorization(token)
-        }
-      }
-    );
-  }
-  dMovieRating(token, movieId) {
-    this.deleteCache("movieRating", movieId);
-    return axios.delete(`${BASE_URL_API}movies/${movieId}/rate`, {
-      headers: {
-        authorization: Server.authorization(token)
-      }
+
+    return res.then(() => {
+      this.cache.movie[movieId].u.rating = 0;
+      return 0;
     });
   }
 

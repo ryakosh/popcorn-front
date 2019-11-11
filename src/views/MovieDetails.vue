@@ -19,7 +19,10 @@
       </div>
     </div>
     <div class="movie-details-view__actions">
-      <pop-rate-button :userRating="prvt.userRating" @on-rate="hRate" />
+      <pop-rate-button
+        :userRating="shrd.token ? prvt.movie.u.rating : 0"
+        @on-rate="hRate"
+      />
     </div>
     <div class="movie-details-view__description">
       {{ prvt.movie.description }}
@@ -39,8 +42,7 @@ export default {
     return {
       shrd: store.state,
       prvt: {
-        movie: null,
-        userRating: 0
+        movie: null
       }
     };
   },
@@ -51,54 +53,27 @@ export default {
   methods: {
     updateMovie(id) {
       server
-        .movie(id)
-        .then(res => {
-          this.prvt.movie = res.data.payload;
+        .movie(id, this.shrd.token)
+        .then(movie => {
+          this.prvt.movie = movie;
         })
         .catch(err => handleError(err, this));
-    },
-    updateUserRating() {
-      if (this.shrd.token) {
-        server
-          .movieRating(this.shrd.token, this.$route.params.id)
-          .then(res => {
-            this.prvt.userRating = res.data.payload.user_rating;
-          })
-          .catch(err => {
-            if (err.response) {
-              if (err.response.data.error === "EntryDNExist") {
-                this.prvt.userRating = 0;
-              } else {
-                handleError(err, this);
-              }
-            }
-          });
-      }
     },
     hRate(userRating) {
       if (this.shrd.token) {
         if (userRating >= 1 && userRating <= 5) {
-          if (this.prvt.userRating) {
+          if (this.prvt.movie.u.rating) {
             server
               .uMovieRating(this.shrd.token, this.$route.params.id, userRating)
-              .then(() => {
-                this.prvt.userRating = userRating;
-              })
               .catch(err => handleError(err, this));
           } else {
             server
               .cMovieRating(this.shrd.token, this.$route.params.id, userRating)
-              .then(() => {
-                this.prvt.userRating = userRating;
-              })
               .catch(err => handleError(err, this));
           }
         } else if (userRating === 0) {
           server
             .dMovieRating(this.shrd.token, this.$route.params.id)
-            .then(() => {
-              this.prvt.userRating = 0;
-            })
             .catch(err => handleError(err, this));
         }
       } else {
@@ -108,11 +83,9 @@ export default {
   },
   created() {
     this.updateMovie(this.$route.params.id);
-    this.updateUserRating();
   },
   beforeRouteUpdate(to, from, next) {
     this.updateMovie(to.params.id);
-    this.updateUserRating();
     next();
   }
 };

@@ -65,8 +65,8 @@ export default {
     for (let filterGenre of filterGenres) {
       server
         .movies(null, null, null, `genres:${filterGenre}`)
-        .then(res => {
-          this.prvt[`${filterGenre.toLowerCase()}Movies`] = res.data.payload;
+        .then(movies => {
+          this.prvt[`${filterGenre.toLowerCase()}Movies`] = movies;
         })
         .catch(err => handleError(err, this));
     }
