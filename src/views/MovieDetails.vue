@@ -64,16 +64,30 @@ export default {
         if (userRating >= 1 && userRating <= 5) {
           if (this.prvt.movie.u.rating) {
             server
-              .uMovieRating(this.shrd.token, this.$route.params.id, userRating)
+              .uMovieRating(
+                this.shrd.token,
+                this.$route.params.id,
+                userRating,
+                this.shrd.uname
+              )
               .catch(err => handleError(err, this));
           } else {
             server
-              .cMovieRating(this.shrd.token, this.$route.params.id, userRating)
+              .cMovieRating(
+                this.shrd.token,
+                this.$route.params.id,
+                userRating,
+                this.shrd.uname
+              )
               .catch(err => handleError(err, this));
           }
         } else if (userRating === 0) {
           server
-            .dMovieRating(this.shrd.token, this.$route.params.id)
+            .dMovieRating(
+              this.shrd.token,
+              this.$route.params.id,
+              this.shrd.uname
+            )
             .catch(err => handleError(err, this));
         }
       } else {

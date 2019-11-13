@@ -2,8 +2,8 @@ import axios from "axios";
 
 const BASE_URL_API =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:8000/popcorn/"
-    : "https://api.popcrn.ir:443/popcorn/";
+    ? "http://localhost:8000/"
+    : "https://api.popcrn.ir:443/";
 export const BASE_URL_POSTERS =
   process.env.NODE_ENV === "development"
     ? "http://127.0.0.1:80/posters/"
@@ -95,9 +95,9 @@ export class Server {
     return axios.post(`${BASE_URL_API}auth/signin`, { uname, pwd });
   }
 
-  cMovieRating(token, movieId, userRating) {
+  cMovieRating(token, movieId, userRating, uname) {
     const res = axios.post(
-      `${BASE_URL_API}movies/${movieId}/rate`,
+      `${BASE_URL_API}users/${uname}/movies/${movieId}?rate`,
       { user_rating: userRating },
       {
         headers: {
@@ -111,9 +111,9 @@ export class Server {
       return userRating;
     });
   }
-  uMovieRating(token, movieId, userRating) {
+  uMovieRating(token, movieId, userRating, uname) {
     const res = axios.put(
-      `${BASE_URL_API}movies/${movieId}/rate`,
+      `${BASE_URL_API}users/${uname}/movies/${movieId}?rate`,
       { user_rating: userRating },
       {
         headers: {
@@ -127,12 +127,15 @@ export class Server {
       return userRating;
     });
   }
-  dMovieRating(token, movieId) {
-    const res = axios.delete(`${BASE_URL_API}movies/${movieId}/rate`, {
-      headers: {
-        authorization: Server.authorization(token)
+  dMovieRating(token, movieId, uname) {
+    const res = axios.delete(
+      `${BASE_URL_API}users/${uname}/movies/${movieId}?rate`,
+      {
+        headers: {
+          authorization: Server.authorization(token)
+        }
       }
-    });
+    );
 
     return res.then(() => {
       this.cache.movie[movieId].u.rating = 0;
