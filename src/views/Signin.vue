@@ -55,6 +55,7 @@ export default {
           .signin(this.uname, this.pwd)
           .then(res => {
             store.setToken(res.data.payload.token);
+            store.setUname(this.uname);
 
             this.$emit("on-notify", {
               type: "SUCCESS",

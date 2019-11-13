@@ -104,6 +104,7 @@ export default {
   created() {
     this.setShowBack(window.location.pathname);
     store.setToken();
+    store.setUname();
   }
 };
 </script>

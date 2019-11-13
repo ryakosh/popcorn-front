@@ -1,5 +1,6 @@
 export const keys = {
-  TOKEN: "token"
+  TOKEN: "token",
+  UNAME: "uname"
 };
 
 const _driver = window.localStorage;
