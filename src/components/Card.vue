@@ -14,11 +14,11 @@ export default {
 @import "../sass/themes";
 
 .card {
-  width: 111.1px;
-  height: 199px;
-  background-color: map-get($LIGHT, primary);
-  border-radius: 13px;
-  box-shadow: 0px 0px 6px map-get($LIGHT, secondary);
+  width: 96.74px;
+  height: auto;
+  background-color: #212121;
+  border-radius: 2.5px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
   display: inline-flex;
   justify-content: center;
   align-items: center;

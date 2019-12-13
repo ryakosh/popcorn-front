@@ -41,23 +41,23 @@ export default {
 
 .search-item {
   width: 100%;
-  height: 47px;
-  border-radius: 7px;
-  background-color: map-get($LIGHT, primary);
-  box-shadow: 0 0 6px map-get($LIGHT, secondary);
+  height: 41px;
+  border-radius: 2.5px;
+  background-color: #212121;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  color: white;
   display: flex;
   align-items: center;
 
   &__poster {
-    width: 31.81px;
+    width: 27px;
     height: 100%;
-    border-radius: 7px 0 0 7px;
+    border-radius: 2.5px 0 0 2.5px;
   }
 
   &__title {
-    color: map-get($LIGHT, secondary);
-    font-size: 11px;
-    margin-left: 7px;
+    font-size: 13px;
+    margin-left: 5px;
   }
 }
 

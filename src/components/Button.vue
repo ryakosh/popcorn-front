@@ -3,10 +3,8 @@
     :class="[
       'button',
       {
-        button_circle: circle,
-        button_shadow: shadow,
-        button_img: img,
-        'button_bg-img': bgImg
+        button_square: square,
+        button_bgimg: bgImg
       }
     ]"
     type="button"
@@ -20,15 +18,7 @@
 export default {
   name: "pop-button",
   props: {
-    circle: {
-      type: Boolean,
-      default: false
-    },
-    shadow: {
-      type: Boolean,
-      default: true
-    },
-    img: {
+    square: {
       type: Boolean,
       default: false
     },
@@ -49,82 +39,29 @@ export default {
 @import "../sass/themes";
 
 .button {
-  padding: 10px 13px;
+  height: 28.23px;
+  width: auto;
+  padding: 6px;
   border: none;
   outline: none;
-  border-radius: 100px;
-  background-color: map-get($LIGHT, primary);
-  color: map-get($LIGHT, secondary);
-  font-size: 10px;
+  border-radius: 2.5px;
+  background-color: #212121;
+  color: white;
+  font-size: 13px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 
-  &_circle {
-    width: 35.6px;
-    height: 35.6px;
-    padding: 0;
-    border-radius: 50%;
+  &_square {
+    width: 28.23px;
+    height: 28.23px;
+    padding: 3px;
+    border-radius: 2.5px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
-  &_shadow {
-    box-shadow: 0 0 6px map-get($LIGHT, secondary);
-  }
-
-  &_img img {
-    width: 24px;
-    height: 24px;
-  }
-
-  &_bg-img {
+  &_bgimg {
+    background-position: center center;
     background-repeat: no-repeat;
-    background-position: center;
-    background-size: 24px 24px;
-  }
-}
-
-.DARK .button {
-  background-color: map-get($DARK, primary);
-  color: map-get($DARK, secondary);
-
-  &_shadow {
-    box-shadow: 0 0 6px map-get($DARK, secondary);
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .button {
-    &_circle {
-      width: 49px;
-      height: 49px;
-    }
-
-    &_img img {
-      width: 31px;
-      height: 31px;
-    }
-
-    &_bg-img {
-      background-size: 31px 31px;
-    }
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .button {
-    &_circle {
-      width: 72px;
-      height: 72px;
-    }
-
-    &_img img {
-      width: 48px;
-      height: 48px;
-    }
-
-    &_bg-img {
-      background-size: 48px 48px;
-    }
   }
 }
 </style>

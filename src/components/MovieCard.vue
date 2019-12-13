@@ -40,23 +40,19 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: inherit;
+  display: flex;
+  flex-direction: column;
 
   &__poster {
-    width: 111.1px;
-    height: 149.1px;
+    width: 96.74px;
+    height: 140.04px;
     border-radius: inherit;
   }
   &__title {
-    width: auto;
-    max-width: 95%;
-    height: 22px;
     display: inline-block;
-    padding: 5px 8px 5px 5px;
-    margin-top: 6.9px;
-    border-radius: 0 20px 20px 0;
-    background-color: map-get($LIGHT, secondary);
-    font-size: 10px;
-    color: map-get($LIGHT, text);
+    margin: 5px;
+    font-size: 11px;
+    color: white;
     white-space: nowrap;
     overflow-x: auto;
   }

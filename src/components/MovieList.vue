@@ -57,20 +57,23 @@ export default {
 @import "../sass/themes";
 
 .movie-list {
+  margin-top: 15px;
+
   &__name {
-    margin-left: 9.8px;
-    color: map-get($LIGHT, secondary);
+    color: black;
+    margin: 0;
+    font-size: 17px;
   }
   &__container {
     padding: 4px 0;
-    margin: 13.8px 0 0 18.8px;
+    margin: 5px 5px;
     overflow-x: auto;
     display: flex;
     will-change: transform;
   }
 
   .card {
-    margin-right: 13.9px;
+    margin-right: 5px;
   }
 }
 

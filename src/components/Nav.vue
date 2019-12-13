@@ -9,7 +9,7 @@
           }
         ]"
         @on-click="hClickBack"
-        circle
+        square
         bgImg
       >
       </pop-button>
@@ -22,7 +22,7 @@
         ]"
         v-if="showAuth"
         @on-click="hClickAuth"
-        circle
+        square
         bgImg
       >
       </pop-button>
@@ -33,12 +33,12 @@
     <div class="nav__right">
       <pop-button
         class="nav__theme-switcher"
-        circle
+        square
         @on-click="hClickThemeSwitcher"
       ></pop-button>
       <pop-button
         class="nav__search"
-        circle
+        square
         bgImg
         @on-click="hClickSearch"
       ></pop-button>
@@ -97,17 +97,16 @@ export default {
   opacity: 1 !important;
 }
 .scroll_auth {
-  /* 35.6px button size + 10px spacing */
-  transform: translateX(45.6px) !important;
+  /* 28.23px button size + 5px spacing */
+  transform: translateX(33.23px) !important;
 }
 
 .nav {
   width: 100%;
   height: auto;
-  padding: 5px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 
   &__left,
   &__right {
@@ -116,13 +115,13 @@ export default {
   }
 
   &__left {
-    height: 35.6px;
+    height: 28.23px;
     display: inline-block;
   }
 
   &__back {
     background-image: url("../assets/nav/back-LIGHT.svg");
-    background-size: 24.45px 14.69px;
+    background-size: 7.86px 15.71px;
     transform: translateX(-30px);
     opacity: 0;
     transition-property: transform, opacity;
@@ -131,7 +130,8 @@ export default {
   }
   &__auth {
     background-image: url("../assets/nav/auth-LIGHT.svg");
-    background-size: 19.05px 26.74px;
+    background-color: #ffc107;
+    background-size: 15px 21.07px;
     transform: translateX(0);
     transition: transform 0.4s;
   }
@@ -142,7 +142,7 @@ export default {
 
   &__theme-switcher {
     background-color: map-get($DARK, primary);
-    margin-right: 10px;
+    margin-right: 5px;
   }
 
   &__search {
@@ -165,34 +165,6 @@ export default {
 
   &__search {
     background-image: url("../assets/nav/search-DARK.svg");
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .nav {
-    &__center img {
-      width: 49px;
-      height: 47.34px;
-    }
-
-    &__left {
-      width: 100%;
-      height: 49px;
-    }
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .nav {
-    &__center img {
-      width: 72px;
-      height: 69.38px;
-    }
-
-    &__left {
-      width: 100%;
-      height: 72px;
-    }
   }
 }
 </style>

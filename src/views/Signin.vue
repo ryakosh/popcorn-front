@@ -90,8 +90,9 @@ export default {
 
 .signin-view {
   width: 100%;
-  height: 91%;
+  height: auto;
   display: flex;
+  margin-top: 15px;
   flex-direction: column;
 
   &__top,
@@ -99,36 +100,40 @@ export default {
     width: 100%;
     height: auto;
     text-align: center;
+    color: map-get($LIGHT, secondary);
   }
 
   &__mode {
-    margin-top: 40px;
-    font-size: 25px;
+    font-size: 20px;
     display: inline-block;
   }
 
   &__center {
     width: 100%;
     height: 100%;
-    padding: 30px;
-    display: block;
-    text-align: center;
-    margin-top: 80px;
+    display: flex;
+    margin-top: 15px;
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
   }
 
   &__input {
-    width: 100%;
-    margin-bottom: 16px;
+    width: 80%;
+    margin-bottom: 5px;
   }
 
   &__signin {
-    background-color: map-get($LIGHT, secondary);
-    color: map-get($LIGHT, primary);
-    font-size: 14px;
-    margin-top: 20px;
+    background-color: #ffc107;
+    color: white;
+    font-size: 13px;
+    margin-top: 15px;
+    margin-bottom: 3px;
+  }
+
+  &__bottom {
+    margin-top: 12px;
+    font-size: 13px;
   }
 }
 

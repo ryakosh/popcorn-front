@@ -94,7 +94,7 @@ export default {
 .validator-input {
   width: 100%;
   height: auto;
-  color: map-get($LIGHT, secondary);
+  color: #212121;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,38 +117,41 @@ export default {
   &__feedback {
     width: 90%;
     height: auto;
-    padding: 9px;
-    margin-top: 15px;
-    background-color: map-get($LIGHT, primary);
-    box-shadow: 0 0 6px map-get($LIGHT, secondary);
-    border-radius: 10px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: #212121;
+    box-shadow: 0 0 5px map-get($LIGHT, secondary);
+    color: white;
+    border-radius: 2.5px;
     display: none;
     flex-direction: column;
   }
   &__subject {
     width: 100%;
     height: auto;
-    font-size: 14px;
+    font-size: 10px;
+    text-transform: uppercase;
     display: inline-block;
   }
   &__validations {
     width: 100%;
     height: 100%;
-    margin-left: 8px;
+    margin-left: 5px;
   }
   &__validation {
     width: auto;
     height: auto;
-    margin-top: 10px;
+    margin-top: 5px;
     display: flex;
     align-items: center;
   }
   &__check {
     width: 9px;
     height: 9px;
-    margin-right: 6px;
+    margin-right: 5px;
     background-color: #d32f2f;
-    border-radius: 50%;
+    border-radius: 1px;
     transition: background-color, 0.4s;
 
     &_valid {
@@ -158,6 +161,7 @@ export default {
 
   &__desc {
     width: 100%;
+    font-size: 13px;
   }
 }
 

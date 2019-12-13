@@ -9,7 +9,7 @@
         />
         <pop-button
           class="search__cancel"
-          circle
+          square
           bgImg
           @on-click="hClickCancel"
         >
@@ -126,62 +126,56 @@ export default {
 <style lang="scss">
 @import "../sass/themes";
 
-.c-search {
+.search {
   width: 100%;
   height: 100%;
   margin: 0;
-  padding: 8px;
+  color: map-get($LIGHT, secondary);
+  background-color: map-get($LIGHT, primary);
+  overflow-y: auto;
   display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
 
-  .search {
+  &__top {
+    width: 100%;
+    height: auto;
+    padding: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__input {
+    width: 100%;
+    text-transform: uppercase;
+  }
+  &__cancel {
+    background-image: url("../assets/cancel-LIGHT.svg");
+    margin-left: 5px;
+  }
+
+  &__bottom {
     width: 100%;
     height: 100%;
-    color: map-get($LIGHT, secondary);
-    border-radius: 27px;
-    background-color: map-get($LIGHT, primary);
     overflow-y: auto;
+    padding: 5px;
+    margin-top: 10px;
+  }
+  &__message {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-
-    &__top {
-      width: 100%;
-      height: auto;
-      padding: 5px 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    &__input {
-      width: 87%;
-    }
-    &__cancel {
-      background-image: url("../assets/cancel-LIGHT.svg");
-    }
-
-    &__bottom {
-      width: 100%;
-      height: 100%;
-      overflow-y: auto;
-      padding: 5px 10px;
-      margin-top: 10px;
-    }
-    &__message {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 18px;
-    }
-    &__emoji {
-      font-size: 29px;
-    }
-    &__item {
-      margin-bottom: 10px;
-    }
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+  }
+  &__emoji {
+    font-size: 29px;
+  }
+  &__item {
+    margin-bottom: 10px;
   }
 }
 
@@ -192,36 +186,6 @@ export default {
 
     &__cancel {
       background-image: url("../assets/cancel-DARK.svg");
-    }
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .c-search {
-    .search {
-      border-radius: 32px;
-
-      &__message {
-        font-size: 30px;
-      }
-      &__emoji {
-        font-size: 43px;
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .c-search {
-    .search {
-      border-radius: 42px;
-
-      &__message {
-        font-size: 42px;
-      }
-      &__emoji {
-        font-size: 55px;
-      }
     }
   }
 }

@@ -114,28 +114,26 @@ export default {
 
 * {
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Hammersmith One", sans-serif;
 }
 
 html,
 body,
 #app {
   width: 100%;
-  height: 100%;
+  height: auto;
   margin: 0;
 }
 
 #app {
-  padding: 8px;
   display: flex;
 }
 
 #app .c {
   width: 100%;
-  height: 100%;
-  border-radius: 27px;
+  height: auto;
+  padding: 5px;
   background-color: map-get($LIGHT, primary);
-  box-shadow: 0 0 9px map-get($LIGHT, secondary);
   overflow-y: auto;
   will-change: transform;
 }

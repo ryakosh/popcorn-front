@@ -45,8 +45,8 @@ export default {
   .notification {
     width: auto;
     max-width: 90%;
-    padding: 11px 10px;
-    border-radius: 50px;
+    padding: 5px;
+    border-radius: 2.5px;
     font-size: 15px;
     color: white;
 
